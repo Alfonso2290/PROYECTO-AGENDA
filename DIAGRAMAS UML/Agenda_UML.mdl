@@ -132,6 +132,10 @@
 			quid       	"5C4CE4E30350"
 			type       	"String"
 			exportControl 	"Public")
+		    (object ClassAttribute "tipo"
+			quid       	"5C4D01A90136"
+			type       	"String"
+			exportControl 	"Public")
 		    (object ClassAttribute "dni"
 			quid       	"5C4CE5CC0001"
 			stereotype 	"FK"
@@ -206,10 +210,10 @@
 			    default_color 	TRUE)
 			label      	(object ItemLabel
 			    Parent_View 	@1
-			    location   	(469, 1360)
+			    location   	(472, 1335)
 			    fill_color 	13434879
 			    nlines     	1
-			    max_width  	418
+			    max_width  	412
 			    justify    	0
 			    label      	"Usuario")
 			icon_style 	"Icon"
@@ -218,7 +222,7 @@
 			quidu      	"5C4CE44F01FB"
 			compartment 	(object Compartment
 			    Parent_View 	@1
-			    location   	(469, 1421)
+			    location   	(472, 1396)
 			    font       	(object Font
 				size       	10
 				face       	"Arial"
@@ -231,11 +235,11 @@
 			    icon_style 	"Icon"
 			    fill_color 	13434879
 			    anchor     	2
-			    nlines     	5
-			    max_width  	421
+			    nlines     	6
+			    max_width  	409
 			    justify    	1)
-			width      	436
-			height     	336
+			width      	430
+			height     	386
 			annotation 	8
 			autoResize 	TRUE)
 		    (object ClassView "Class" "Use Case View::Contacto" @2
@@ -328,7 +332,7 @@
 			    fill_color 	13434879
 			    anchor     	2
 			    nlines     	10
-			    max_width  	397
+			    max_width  	409
 			    justify    	1)
 			width      	418
 			height     	586
@@ -360,7 +364,7 @@
 				vertices   	(list Points
 				    (738, 863)
 				    (678, 863)
-				    (678, 1347))
+				    (678, 1322))
 				line_style 	0)
 			    (object RoleView "$UNNAMED$2" @6
 				Parent_View 	@4
