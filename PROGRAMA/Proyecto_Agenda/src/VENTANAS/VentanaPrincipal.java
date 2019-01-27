@@ -8,7 +8,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-import VENTANAS.VentanaPrincipalAdministrador;
+import VENTANAS.Administrador.VentanaPrincipalAdministrador;
 
 public class VentanaPrincipal extends JFrame implements ActionListener
 {
@@ -21,6 +21,7 @@ public class VentanaPrincipal extends JFrame implements ActionListener
     {
         setTitle("Ventana Principal");
         setSize(350,300);
+        setResizable(false);
         setLocationRelativeTo(null);
         Inicio();
     }

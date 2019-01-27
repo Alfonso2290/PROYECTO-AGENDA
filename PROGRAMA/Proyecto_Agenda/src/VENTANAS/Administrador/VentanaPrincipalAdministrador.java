@@ -1,6 +1,7 @@
 
-package VENTANAS;
+package VENTANAS.Administrador;
 
+import VENTANAS.VentanaPrincipal;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.net.URL;
@@ -22,8 +23,9 @@ public class VentanaPrincipalAdministrador extends JFrame implements ActionListe
     
     public VentanaPrincipalAdministrador()
     {
-        setTitle("Ventana Principal");
+        setTitle("Administrador");
         setSize(350,300);
+        setResizable(false);
         setLocationRelativeTo(null);
         Inicio();
     }
@@ -44,6 +46,7 @@ public class VentanaPrincipalAdministrador extends JFrame implements ActionListe
         menuCuentas=new JMenu("Cuentas");
         itemCuentasNuevo=new JMenuItem("Nuevo");
         menuCuentas.add(itemCuentasNuevo);
+        itemCuentasNuevo.addActionListener(this);
         itemCuentasEditar=new JMenuItem("Editar");
         menuCuentas.add(itemCuentasEditar);
         itemCuentasVer=new JMenuItem("Ver");
@@ -51,6 +54,7 @@ public class VentanaPrincipalAdministrador extends JFrame implements ActionListe
         
         menuContactos=new JMenu("Contactos");
         itemContactosNuevo=new JMenuItem("Nuevo");
+        itemContactosNuevo.addActionListener(this);
         menuContactos.add(itemContactosNuevo);
         itemContactosEditar=new JMenuItem("Editar");
         menuContactos.add(itemContactosEditar);
@@ -86,6 +90,18 @@ public class VentanaPrincipalAdministrador extends JFrame implements ActionListe
         {
             setVisible(false);
             VentanaPrincipal miVentana=new VentanaPrincipal();
+            miVentana.setVisible(true);
+        }
+        
+        if(e.getSource()==itemCuentasNuevo)
+        {
+            VentanaRegistrarUsuario miVentana=new VentanaRegistrarUsuario();
+            miVentana.setVisible(true);
+        }
+        
+        if(e.getSource()==itemContactosNuevo)
+        {
+            VentanaRegistrarContacto miVentana=new VentanaRegistrarContacto();
             miVentana.setVisible(true);
         }
     }
