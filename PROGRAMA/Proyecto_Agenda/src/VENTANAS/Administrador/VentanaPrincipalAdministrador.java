@@ -1,16 +1,10 @@
 
 package VENTANAS.Administrador;
 
+import PANELES.Administrador.PanelVentanaPrincipalAdministrador;
 import VENTANAS.VentanaPrincipal;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.net.URL;
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
+import java.awt.event.*;
+import javax.swing.*;
 
 public class VentanaPrincipalAdministrador extends JFrame implements ActionListener 
 {
@@ -19,7 +13,7 @@ public class VentanaPrincipalAdministrador extends JFrame implements ActionListe
     private JMenuItem itemUsuarioSalir,itemUsuarioCerrarSesion,itemCuentasNuevo,
             itemCuentasEditar,itemCuentasVer,itemContactosNuevo,itemContactosEditar,
             itemContactosVer;
-    private JLabel imagen;
+    private PanelVentanaPrincipalAdministrador miPanel;
     
     public VentanaPrincipalAdministrador()
     {
@@ -32,7 +26,7 @@ public class VentanaPrincipalAdministrador extends JFrame implements ActionListe
     
     private void Inicio()
     {
-        setLayout(null);
+        miPanel=new PanelVentanaPrincipalAdministrador();
         
         barraMenu=new JMenuBar();
         menuUsuario=new JMenu("Usuario");
@@ -66,16 +60,7 @@ public class VentanaPrincipalAdministrador extends JFrame implements ActionListe
         barraMenu.add(menuContactos);
         
         setJMenuBar(barraMenu);
-        
-        ////Agregar imagen a un label
-        String ruta="/imagenes/administrador.jpg";
-        URL url=this.getClass().getResource(ruta);
-        ImageIcon icono=new ImageIcon(url);
-        imagen=new JLabel();
-        imagen.setBounds(30,20,400,200);
-        imagen.setIcon(icono);
-        add(imagen);
-        ///*************************************
+        add(miPanel);
     }
     
     @Override
@@ -91,6 +76,7 @@ public class VentanaPrincipalAdministrador extends JFrame implements ActionListe
             setVisible(false);
             VentanaPrincipal miVentana=new VentanaPrincipal();
             miVentana.setVisible(true);
+            miVentana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         }
         
         if(e.getSource()==itemCuentasNuevo)
