@@ -33,7 +33,7 @@ public class PanelVentanaRegistrarUsuario extends JPanel
         cbtipo=new JComboBox();
         cbtipo.addItem("-Seleccionar-");
         cbtipo.addItem("Administrador");
-        cbtipo.addItem("Propietario");
+        cbtipo.addItem("Personal");
         cbtipo.setBounds(135,90,120,20);
         
         usu=new JLabel("Usuario:");

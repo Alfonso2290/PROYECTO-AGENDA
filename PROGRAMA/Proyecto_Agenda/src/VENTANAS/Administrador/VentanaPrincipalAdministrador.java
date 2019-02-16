@@ -42,8 +42,10 @@ public class VentanaPrincipalAdministrador extends JFrame implements ActionListe
         menuCuentas.add(itemCuentasNuevo);
         itemCuentasNuevo.addActionListener(this);
         itemCuentasEditar=new JMenuItem("Editar");
+        itemCuentasEditar.addActionListener(this);
         menuCuentas.add(itemCuentasEditar);
         itemCuentasVer=new JMenuItem("Ver");
+        itemCuentasVer.addActionListener(this);
         menuCuentas.add(itemCuentasVer);
         
         menuContactos=new JMenu("Contactos");
@@ -51,10 +53,12 @@ public class VentanaPrincipalAdministrador extends JFrame implements ActionListe
         itemContactosNuevo.addActionListener(this);
         menuContactos.add(itemContactosNuevo);
         itemContactosEditar=new JMenuItem("Editar");
+        itemContactosEditar.addActionListener(this);
         menuContactos.add(itemContactosEditar);
         itemContactosVer=new JMenuItem("Ver");
+        itemContactosVer.addActionListener(this);
         menuContactos.add(itemContactosVer);
-        
+              
         barraMenu.add(menuUsuario);
         barraMenu.add(menuCuentas);
         barraMenu.add(menuContactos);
@@ -81,14 +85,34 @@ public class VentanaPrincipalAdministrador extends JFrame implements ActionListe
         
         if(e.getSource()==itemCuentasNuevo)
         {
-            VentanaRegistrarUsuario miVentana=new VentanaRegistrarUsuario();
-            miVentana.setVisible(true);
+            VentanaRegistrarUsuario miVentana1=new VentanaRegistrarUsuario();
+            miVentana1.setVisible(true);
+        }
+        else if(e.getSource()==itemCuentasVer)
+        {
+            VentanaMostrarCuentas miVentana2=new VentanaMostrarCuentas();
+            miVentana2.setVisible(true);
+        }
+        else if(e.getSource()==itemCuentasEditar)
+        {
+            VentanaEditarCuenta miVentana3=new VentanaEditarCuenta();
+            miVentana3.setVisible(true);
         }
         
         if(e.getSource()==itemContactosNuevo)
         {
-            VentanaRegistrarContacto miVentana=new VentanaRegistrarContacto();
-            miVentana.setVisible(true);
+            VentanaRegistrarContacto miVentana4=new VentanaRegistrarContacto();
+            miVentana4.setVisible(true);
+        }
+        else if(e.getSource()==itemContactosVer)
+        {
+            VentanaMostrarContactos miVentana5=new VentanaMostrarContactos();
+            miVentana5.setVisible(true);
+        }
+        else if(e.getSource()==itemContactosEditar)
+        {
+            VentanaEditarContacto miVentana6=new VentanaEditarContacto();
+            miVentana6.setVisible(true);
         }
     }
 }
