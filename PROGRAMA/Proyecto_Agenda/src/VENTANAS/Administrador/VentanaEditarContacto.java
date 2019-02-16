@@ -23,6 +23,7 @@ public class VentanaEditarContacto extends JFrame
     private void Inicio()
     {
         miPanel=new PanelVentanaEditarContacto();
+        miPanel.setBackground(Color.LIGHT_GRAY.brighter());
         
         btnModificar=new JButton("Editar");
         btnModificar.setBounds(10, 30, 80, 30);

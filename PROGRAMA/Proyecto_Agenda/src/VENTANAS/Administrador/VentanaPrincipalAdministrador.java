@@ -3,6 +3,7 @@ package VENTANAS.Administrador;
 
 import PANELES.Administrador.PanelVentanaPrincipalAdministrador;
 import VENTANAS.VentanaPrincipal;
+import java.awt.Color;
 import java.awt.event.*;
 import javax.swing.*;
 
@@ -27,6 +28,7 @@ public class VentanaPrincipalAdministrador extends JFrame implements ActionListe
     private void Inicio()
     {
         miPanel=new PanelVentanaPrincipalAdministrador();
+        miPanel.setBackground(Color.LIGHT_GRAY.brighter());
         
         barraMenu=new JMenuBar();
         menuUsuario=new JMenu("Usuario");

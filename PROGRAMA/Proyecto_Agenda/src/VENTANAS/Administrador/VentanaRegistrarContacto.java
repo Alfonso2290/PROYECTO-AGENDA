@@ -3,6 +3,7 @@ package VENTANAS.Administrador;
 
 
 import PANELES.Administrador.PanelVentanaRegistrarContacto;
+import java.awt.Color;
 import java.awt.event.*;
 import javax.swing.*;
 
@@ -24,6 +25,7 @@ public class VentanaRegistrarContacto extends JFrame implements ActionListener
     private void Inicio()
     {
         miPanel=new PanelVentanaRegistrarContacto();
+        miPanel.setBackground(Color.LIGHT_GRAY.brighter());
         
         btnGuardar=new JButton("Guardar");
         btnGuardar.setBounds(60,435,80,20);

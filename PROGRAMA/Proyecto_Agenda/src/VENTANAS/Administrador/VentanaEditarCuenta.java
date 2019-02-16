@@ -22,6 +22,7 @@ public class VentanaEditarCuenta extends JFrame
     private void Inicio()
     {
         miPanel=new PanelVentanaEditarCuenta();
+        miPanel.setBackground(Color.LIGHT_GRAY.brighter());
         add(miPanel);
     }
 }

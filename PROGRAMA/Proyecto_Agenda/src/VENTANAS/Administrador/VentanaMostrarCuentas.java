@@ -22,6 +22,7 @@ public class VentanaMostrarCuentas extends JFrame
     private void Inicio()
     {
         miPanel=new PanelVentanaMostrarCuentas();
+        miPanel.setBackground(Color.LIGHT_GRAY.brighter());
         add(miPanel);
     }
 }

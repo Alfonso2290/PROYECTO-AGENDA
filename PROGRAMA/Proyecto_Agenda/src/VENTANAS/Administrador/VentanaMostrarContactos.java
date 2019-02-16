@@ -22,6 +22,7 @@ public class VentanaMostrarContactos extends JFrame
     private void Inicio()
     {
         miPanel=new PanelVentanaMostrarContactos();
+        miPanel.setBackground(Color.LIGHT_GRAY.brighter());
         add(miPanel);
     }
 }

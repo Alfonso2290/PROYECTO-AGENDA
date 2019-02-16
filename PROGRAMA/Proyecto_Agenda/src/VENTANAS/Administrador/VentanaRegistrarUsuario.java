@@ -2,6 +2,7 @@
 package VENTANAS.Administrador;
 
 import PANELES.Administrador.PanelVentanaRegistrarUsuario;
+import java.awt.Color;
 import java.awt.event.*;
 import javax.swing.*;
 
@@ -22,6 +23,7 @@ public class VentanaRegistrarUsuario extends JFrame implements ActionListener
     private void Inicio()
     {
         miPanel=new PanelVentanaRegistrarUsuario();
+        miPanel.setBackground(Color.LIGHT_GRAY.brighter());
         
         btnAtras=new JButton("<<Atrás");
         btnAtras.setBounds(40,265,100,20);

@@ -1,6 +1,7 @@
 
 package PANELES;
 
+import java.awt.*;
 import javax.swing.*;
 
 public class PanelVentanaPrincipal extends JPanel 
@@ -18,20 +19,28 @@ public class PanelVentanaPrincipal extends JPanel
     {
         setLayout(null);
         
+        Font fuenteTitulo=new Font("Arial", Font.BOLD, 16);
+        Font fuenteCampos=new Font("Arial", Font.BOLD, 13);
+        
         titulo=new JLabel("INICIO DE SESIÓN");
-        titulo.setBounds(120,10,120,30);
+        titulo.setBounds(105,10,150,30);
+        titulo.setFont(fuenteTitulo);
         
         usu=new JLabel("Usuario: ");
-        usu.setBounds(50,70,80,20);
+        usu.setBounds(50,80,80,20);
+        usu.setFont(fuenteCampos);
         
         txtusu=new JTextField();
-        txtusu.setBounds(150,70,120,20);
+        txtusu.setBounds(150,80,150,20);
+        txtusu.setFont(fuenteCampos);
         
         cla=new JLabel("Contraseña: ");
-        cla.setBounds(50,120,80,20);
+        cla.setBounds(50,130,80,20);
+        cla.setFont(fuenteCampos);
         
         txtcla=new JPasswordField();
-        txtcla.setBounds(150,120,120,20);
+        txtcla.setBounds(150,130,150,20);
+        txtcla.setFont(fuenteCampos);
         
         add(txtusu);
         add(txtcla);
@@ -39,4 +48,5 @@ public class PanelVentanaPrincipal extends JPanel
         add(usu);
         add(cla);
     }
+    
 }
