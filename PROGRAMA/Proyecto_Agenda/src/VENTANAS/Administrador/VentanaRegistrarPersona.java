@@ -9,7 +9,6 @@ import javax.swing.*;
 public class VentanaRegistrarPersona extends JFrame implements ActionListener
 {
     private PanelVentanaRegistrarPersona miPanel;
-    private JButton btnFinalizar,btnAtras;
     
     public VentanaRegistrarPersona()
     {
@@ -25,30 +24,23 @@ public class VentanaRegistrarPersona extends JFrame implements ActionListener
         miPanel=new PanelVentanaRegistrarPersona();
         miPanel.setBackground(Color.LIGHT_GRAY.brighter());
         
-        btnAtras=new JButton("<<Atrás");
-        btnAtras.setBounds(40,465,100,20);
-        btnAtras.addActionListener(this);
-        
-        btnFinalizar=new JButton("Finalizar");
-        btnFinalizar.setBounds(150,465,110,20);
-        btnFinalizar.addActionListener(this);
+        miPanel.getBtnAtras().addActionListener(this);
+        miPanel.getBtnFinalizar().addActionListener(this);
         
         add(miPanel);
-        miPanel.add(btnFinalizar);
-        miPanel.add(btnAtras);
     }
     
     @Override
     public void actionPerformed(ActionEvent e)
     {
-        if(e.getSource()==btnAtras)
+        if(e.getSource()==miPanel.getBtnAtras())
         {
             setVisible(false);
             VentanaRegistrarUsuario obj=new VentanaRegistrarUsuario();
             obj.setVisible(true);
         }
         
-        if(e.getSource()==btnFinalizar)
+        if(e.getSource()==miPanel.getBtnFinalizar())
         {
             setVisible(false);
         }

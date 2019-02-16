@@ -9,6 +9,7 @@ public class PanelVentanaRegistrarPersona extends JPanel
     private JLabel mensaje,titulo,nom,dni,apepa,apema,tele,edad,dis,dir,cor;
     private JTextField txtNom,txtDni,txtApepa,txtApema,txtTele,txtEdad,txtDir,txtCor;
     private JComboBox cbdis;
+    private JButton btnFinalizar,btnAtras;
     
     public PanelVentanaRegistrarPersona()
     {
@@ -84,6 +85,12 @@ public class PanelVentanaRegistrarPersona extends JPanel
         txtEdad=new JTextField();
         txtEdad.setBounds(135,410,120,20);
         
+        btnAtras=new JButton("<<Atrás");
+        btnAtras.setBounds(40,465,100,20);
+        
+        btnFinalizar=new JButton("Finalizar");
+        btnFinalizar.setBounds(150,465,110,20);
+        
         add(titulo);
         add(dni);
         add(nom);
@@ -104,5 +111,53 @@ public class PanelVentanaRegistrarPersona extends JPanel
         add(txtDir);
         add(txtApema);
         add(mensaje);
+        add(btnFinalizar);
+        add(btnAtras);
     }
+
+    public JTextField getTxtNom() {
+        return txtNom;
+    }
+
+    public JTextField getTxtDni() {
+        return txtDni;
+    }
+
+    public JTextField getTxtApepa() {
+        return txtApepa;
+    }
+
+    public JTextField getTxtApema() {
+        return txtApema;
+    }
+
+    public JTextField getTxtTele() {
+        return txtTele;
+    }
+
+    public JTextField getTxtEdad() {
+        return txtEdad;
+    }
+
+    public JTextField getTxtDir() {
+        return txtDir;
+    }
+
+    public JTextField getTxtCor() {
+        return txtCor;
+    }
+
+    public JComboBox getCbdis() {
+        return cbdis;
+    }
+
+    public JButton getBtnFinalizar() {
+        return btnFinalizar;
+    }
+
+    public JButton getBtnAtras() {
+        return btnAtras;
+    }
+    
+    
 }

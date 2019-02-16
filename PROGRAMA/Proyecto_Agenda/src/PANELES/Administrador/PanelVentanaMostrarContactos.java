@@ -314,4 +314,18 @@ public class PanelVentanaMostrarContactos extends JPanel
         add(btnBuscar);
         add(scroll);
     }
+
+    public JButton getBtnBuscar() {
+        return btnBuscar;
+    }
+
+    public JComboBox getCbDistrito() {
+        return cbDistrito;
+    }
+
+    public JComboBox getCbNombre() {
+        return cbNombre;
+    }
+    
+    
 }

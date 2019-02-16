@@ -5,7 +5,7 @@ import java.sql.*;
 
 public class ConexionBD {
 
-    Connection conexion;
+    private Connection conexion;
     
     public Connection getConexionBD()
     {
@@ -14,7 +14,7 @@ public class ConexionBD {
         {
             Class.forName("com.mysql.jdbc.Driver");
             conexion=DriverManager.getConnection("jdbc:mysql://localhost/AGENDA","root","Lacronfonso");
-            System.out.println("Conexión exitosa");
+            //System.out.println("Conexión exitosa");
         } 
         catch (Exception e) 
         {
@@ -24,10 +24,19 @@ public class ConexionBD {
         return conexion;
     }
     
-    public static void main(String[] args) 
+    public void cerrarConexion()
     {
-       ConexionBD obj=new ConexionBD();
-       obj.getConexionBD();
+        try 
+        {
+            conexion.close();
+        }
+        catch (Exception e) {}  
     }
+    
+//    public static void main(String[] args) 
+//    {
+//       ConexionBD obj=new ConexionBD();
+//       obj.getConexionBD();
+//    }
     
 }

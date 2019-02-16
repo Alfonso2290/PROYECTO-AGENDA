@@ -11,6 +11,7 @@ public class PanelVentanaEditarContacto extends JPanel
     private JScrollPane scroll;
     private JButton btnBuscar;
     private JComboBox cbDistrito,cbNombre;
+    private JButton btnEliminar,btnModificar;
     
     public PanelVentanaEditarContacto()
     {
@@ -20,6 +21,12 @@ public class PanelVentanaEditarContacto extends JPanel
     private void Inicio()
     {
         setLayout(null);
+        
+        btnModificar=new JButton("Editar");
+        btnModificar.setBounds(10, 30, 80, 30);
+        
+        btnEliminar=new JButton("Eliminar");
+        btnEliminar.setBounds(110, 30, 80, 30);
         
         cbNombre=new JComboBox();
         cbNombre.addItem("-Seleccionar Nombre-");
@@ -64,6 +71,30 @@ public class PanelVentanaEditarContacto extends JPanel
         add(cbDistrito);
         add(cbNombre);
         add(btnBuscar);
+        add(btnEliminar);
+        add(btnModificar);
         add(scroll);
     }
+
+    public JButton getBtnBuscar() {
+        return btnBuscar;
+    }
+
+    public JComboBox getCbDistrito() {
+        return cbDistrito;
+    }
+
+    public JComboBox getCbNombre() {
+        return cbNombre;
+    }
+
+    public JButton getBtnEliminar() {
+        return btnEliminar;
+    }
+
+    public JButton getBtnModificar() {
+        return btnModificar;
+    }
+    
+    
 }

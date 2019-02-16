@@ -8,7 +8,6 @@ import java.awt.*;
 public class VentanaEditarContacto extends JFrame
 {
     private PanelVentanaEditarContacto miPanel;
-    private JButton btnEliminar,btnModificar;
     
     public VentanaEditarContacto()
     {
@@ -24,15 +23,7 @@ public class VentanaEditarContacto extends JFrame
     {
         miPanel=new PanelVentanaEditarContacto();
         miPanel.setBackground(Color.LIGHT_GRAY.brighter());
-        
-        btnModificar=new JButton("Editar");
-        btnModificar.setBounds(10, 30, 80, 30);
-        
-        btnEliminar=new JButton("Eliminar");
-        btnEliminar.setBounds(110, 30, 80, 30);
-        
+
         add(miPanel);
-        miPanel.add(btnEliminar);
-        miPanel.add(btnModificar);
     }
 }

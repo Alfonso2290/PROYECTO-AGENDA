@@ -10,6 +10,7 @@ public class PanelVentanaRegistrarUsuario extends JPanel
     private JTextField txtUsu;
     private JComboBox cbtipo;
     private JPasswordField txtCla,txtCla2;
+    private JButton btnSiguiente,btnAtras;
     
     public PanelVentanaRegistrarUsuario()
     {
@@ -54,6 +55,12 @@ public class PanelVentanaRegistrarUsuario extends JPanel
         txtCla2=new JPasswordField();
         txtCla2.setBounds(135,210,120,20);
         
+        btnAtras=new JButton("<<Atrás");
+        btnAtras.setBounds(40,265,100,20);
+        
+        btnSiguiente=new JButton("Siguiente>>");
+        btnSiguiente.setBounds(150,265,110,20);
+        
         add(titulo);
         add(usu);
         add(mensaje);
@@ -64,5 +71,33 @@ public class PanelVentanaRegistrarUsuario extends JPanel
         add(txtCla2);
         add(tipo);
         add(cbtipo);
+        add(btnSiguiente);
+        add(btnAtras);
     }
+
+    public JTextField getTxtUsu() {
+        return txtUsu;
+    }
+
+    public JComboBox getCbtipo() {
+        return cbtipo;
+    }
+
+    public JPasswordField getTxtCla() {
+        return txtCla;
+    }
+
+    public JPasswordField getTxtCla2() {
+        return txtCla2;
+    }
+
+    public JButton getBtnSiguiente() {
+        return btnSiguiente;
+    }
+
+    public JButton getBtnAtras() {
+        return btnAtras;
+    }
+    
+    
 }

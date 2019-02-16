@@ -1,6 +1,8 @@
 
 package VENTANAS;
 
+import BEAN.UsuarioBEAN;
+import DAO.UsuarioDAO;
 import PANELES.PanelVentanaPrincipal;
 import java.awt.event.*;
 import javax.swing.*;
@@ -9,9 +11,8 @@ import java.awt.*;
 
 public class VentanaPrincipal extends JFrame implements ActionListener
 {
-    
-    private JButton btnSalir,btnIngresar;
     private PanelVentanaPrincipal miPanel;
+    private int contador=0;
             
     public VentanaPrincipal()
     {
@@ -24,71 +25,76 @@ public class VentanaPrincipal extends JFrame implements ActionListener
     
     private void Inicio()
     {
-        Font fuenteCampos=new Font("Arial", Font.BOLD, 13);
+        //JOptionPane.showMessageDialog(null, "Bienvenido Usuario \n Usted tiene 3 intentos para ingresar al Sistema");
         miPanel=new PanelVentanaPrincipal();
         miPanel.setBackground(Color.LIGHT_GRAY.brighter());
         
-        btnIngresar=new JButton("Ingresar");
-        btnIngresar.setBounds(80,200,90,30);
-        btnIngresar.addActionListener(this);
-        btnIngresar.addMouseListener(new ColorBotones(Color.LIGHT_GRAY.darker(),Color.WHITE,btnIngresar));
-        btnIngresar.setFont(fuenteCampos);
-        
-        btnSalir=new JButton("Salir");
-        btnSalir.setBounds(190,200,85,30);
-        btnSalir.addActionListener(this);
-        btnSalir.addMouseListener(new ColorBotones(Color.LIGHT_GRAY.darker(),Color.WHITE,btnSalir));
-        btnSalir.setFont(fuenteCampos);
-        
+        miPanel.getBtnIngresar().addActionListener(this);
+        miPanel.getBtnSalir().addActionListener(this);
+
         add(miPanel);
-        miPanel.add(btnSalir);
-        miPanel.add(btnIngresar);
     }
     
     @Override
     public void actionPerformed(ActionEvent e)
     {
-        if(e.getSource()==btnSalir)
+        if(e.getSource()==miPanel.getBtnSalir())
         {
             System.exit(0);
         }
         
-        if(e.getSource()==btnIngresar)
+        if(e.getSource()==miPanel.getBtnIngresar())
         {
-            setVisible(false);
-            VentanaPrincipalAdministrador miVentana=new VentanaPrincipalAdministrador();
-            miVentana.setVisible(true);
-            miVentana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        }
-    }
-    
-    private class ColorBotones extends MouseAdapter
-    {
-        private Color colorFondo,colorLetra;
-        private JButton boton;
-        
-        public ColorBotones(Color colorFondo,Color colorLetra,JButton boton)
-        {
-            this.colorFondo=colorFondo;
-            this.colorLetra=colorLetra;
-            this.boton=boton;
-        }
-        
-        @Override
-        public void mouseEntered(MouseEvent e)
-        {
+            String usu,cla;
+            usu=miPanel.getTxtusu().getText();
+            cla=miPanel.getTxtcla().getText();
             
-            this.boton.setBackground(colorFondo);
-            this.boton.setForeground(colorLetra);
-        }
-        
-        @Override
-        public void mouseExited(MouseEvent e)
-        {
-            
-            this.boton.setBackground(getBackground());
-            this.boton.setForeground(null);
-            
+            if(usu.equals(""))
+            {
+                JOptionPane.showMessageDialog(null, "Usted debe llenar el campo Usuario ");
+                miPanel.getTxtusu().requestFocus();
+            }
+            else if(cla.equals(""))
+            {
+                JOptionPane.showMessageDialog(null, "Usted debe llenar el campo Contraseña ");
+                miPanel.getTxtcla().requestFocus();
+            }
+            else
+            {
+                contador++;
+                miPanel.getMensaje().setBounds(45,45,260,20);
+                if(contador==2)
+                    miPanel.getMensaje().setText("A Usted le queda " + (3-contador) + " intento para acceder al Sistema");
+                else
+                    miPanel.getMensaje().setText("A Usted le quedan " + (3-contador) + " intentos para acceder al Sistema");
+                
+                if(contador<3)
+                {
+                    UsuarioBEAN usuario=new UsuarioBEAN();
+                    usuario.setNombreUsuario(usu);
+                    usuario.setClave(cla);
+                    UsuarioDAO usuarioDAO=new UsuarioDAO();
+                    int verificar=usuarioDAO.verificarCuentaDeUsuario(usuario);
+                    if(verificar==1)
+                    {
+                        setVisible(false);
+                        VentanaPrincipalAdministrador miVentana=new VentanaPrincipalAdministrador();
+                        miVentana.setVisible(true);
+                        miVentana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
+                    }
+                    else
+                    {
+                        JOptionPane.showMessageDialog(null, "El usuario y/o contraseña son incorrectos");
+                        miPanel.limpiarCampos();
+                        miPanel.getTxtusu().requestFocus();
+                    }
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(null, "Usted ha superado el límite de intentos\nPrograma Finalizado!!");
+                    System.exit(0);
+                }
+            }
         }
     }
 }

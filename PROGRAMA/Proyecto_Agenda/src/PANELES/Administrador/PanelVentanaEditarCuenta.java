@@ -69,4 +69,18 @@ public class PanelVentanaEditarCuenta extends JPanel
         add(btnBuscar);
         add(scroll);
     }
+
+    public JButton getBtnBuscar() {
+        return btnBuscar;
+    }
+
+    public JComboBox getCbTipo() {
+        return cbTipo;
+    }
+
+    public JComboBox getCbNombre() {
+        return cbNombre;
+    }
+    
+    
 }
