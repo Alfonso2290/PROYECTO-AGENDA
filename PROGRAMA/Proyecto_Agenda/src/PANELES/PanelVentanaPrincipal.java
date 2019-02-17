@@ -41,6 +41,7 @@ public class PanelVentanaPrincipal extends JPanel
         txtusu=new JTextField();
         txtusu.setBounds(150,80,150,20);
         txtusu.setFont(fuenteCampos);
+        txtusu.addKeyListener(new cambioCampo());
         
         cla=new JLabel("Contraseña: ");
         cla.setBounds(50,130,80,20);
@@ -49,11 +50,13 @@ public class PanelVentanaPrincipal extends JPanel
         txtcla=new JPasswordField();
         txtcla.setBounds(150,130,150,20);
         txtcla.setFont(fuenteCampos);
+        txtcla.addKeyListener(new cambioCampo());
         
         btnIngresar=new JButton("Ingresar");
         btnIngresar.setBounds(80,200,90,30);
         btnIngresar.addMouseListener(new ColorBotones(Color.LIGHT_GRAY.darker(),Color.WHITE,btnIngresar));
         btnIngresar.setFont(fuenteCampos);
+        btnIngresar.addKeyListener(new cambioCampo());
         
         btnSalir=new JButton("Salir");
         btnSalir.setBounds(190,200,85,30);
@@ -123,6 +126,33 @@ public class PanelVentanaPrincipal extends JPanel
             this.boton.setBackground(getBackground());
             this.boton.setForeground(null);
             
+        }
+    }
+    
+    private class cambioCampo extends KeyAdapter
+    {
+        @Override
+        public void keyPressed(KeyEvent e)
+        {
+            if(e.getSource()==txtusu)
+            {
+                if(e.VK_ENTER==e.getKeyCode())
+                    txtusu.nextFocus();
+            }
+            
+            if(e.getSource()==txtcla)
+            {
+                if(e.VK_ENTER==e.getKeyCode())
+                    txtcla.nextFocus();
+                
+            }
+            
+            if(e.getSource()==btnIngresar)
+            {
+                if(e.VK_ENTER==e.getKeyCode())
+                    btnIngresar.nextFocus(); //CAMBIAR INSTRUCCION QUE DE CLICK
+            }
+                
         }
     }
     

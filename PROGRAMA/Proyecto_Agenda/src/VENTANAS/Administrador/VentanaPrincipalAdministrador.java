@@ -15,6 +15,7 @@ public class VentanaPrincipalAdministrador extends JFrame implements ActionListe
             itemCuentasEditar,itemCuentasVer,itemContactosNuevo,itemContactosEditar,
             itemContactosVer;
     private PanelVentanaPrincipalAdministrador miPanel;
+    private JTextField nombreUsuario;
     
     public VentanaPrincipalAdministrador()
     {
@@ -27,6 +28,9 @@ public class VentanaPrincipalAdministrador extends JFrame implements ActionListe
     
     private void Inicio()
     {
+        nombreUsuario=new JTextField();
+       
+        
         miPanel=new PanelVentanaPrincipalAdministrador();
         miPanel.setBackground(Color.LIGHT_GRAY.brighter());
         
@@ -67,6 +71,7 @@ public class VentanaPrincipalAdministrador extends JFrame implements ActionListe
         
         setJMenuBar(barraMenu);
         add(miPanel);
+        
     }
     
     @Override
@@ -105,6 +110,7 @@ public class VentanaPrincipalAdministrador extends JFrame implements ActionListe
         {
             VentanaRegistrarContacto miVentana4=new VentanaRegistrarContacto();
             miVentana4.setVisible(true);
+            miVentana4.getNombreUsuario().setText(nombreUsuario.getText());
         }
         else if(e.getSource()==itemContactosVer)
         {
@@ -117,4 +123,10 @@ public class VentanaPrincipalAdministrador extends JFrame implements ActionListe
             miVentana6.setVisible(true);
         }
     }
+
+    public JTextField getNombreUsuario() {
+        return nombreUsuario;
+    }
+    
+    
 }
