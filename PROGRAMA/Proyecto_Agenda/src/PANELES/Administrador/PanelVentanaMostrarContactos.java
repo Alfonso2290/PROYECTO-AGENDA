@@ -1,8 +1,13 @@
 
 package PANELES.Administrador;
 
+import BEAN.ContactoBEAN;
+import BEAN.UsuarioBEAN;
+import DAO.ContactoDAO;
+import DAO.UsuarioDAO;
 import javax.swing.*;
 import javax.swing.table.*;
+import java.util.*;
 
 public class PanelVentanaMostrarContactos extends JPanel
 {
@@ -11,6 +16,8 @@ public class PanelVentanaMostrarContactos extends JPanel
     private JScrollPane scroll;
     private JButton btnBuscar;
     private JComboBox cbDistrito,cbNombre;
+    private ArrayList<ContactoBEAN> lista;
+    public JTextField nomUsuario;
     
     public PanelVentanaMostrarContactos()
     {
@@ -19,7 +26,9 @@ public class PanelVentanaMostrarContactos extends JPanel
     
     private void Inicio()
     {
+        
         setLayout(null);
+        nomUsuario=new JTextField();
         
         cbNombre=new JComboBox();
         cbNombre.addItem("-Seleccionar Nombre-");
@@ -38,7 +47,6 @@ public class PanelVentanaMostrarContactos extends JPanel
         btnBuscar=new JButton("Buscar");
         btnBuscar.setBounds(725, 30, 80, 30);
         
-        
         modelo=new DefaultTableModel();
         tabla=new JTable();
         scroll=new JScrollPane(tabla);
@@ -54,258 +62,20 @@ public class PanelVentanaMostrarContactos extends JPanel
         
         tabla.setModel(modelo);
         
-        modelo.addRow(new Object[]{"72190542","Alfonso",
-            "Molero Farman","5231468",28,"San Martín de Porres","Urb. Miguel Grau",
-            "alfonsomolerofarman@gmail.com"});
-        modelo.addRow(new Object[]{"72190542","Alfonso",
-            "Molero Farman","5231468",28,"San Martín de Porres","Urb. Miguel Grau",
-            "alfonsomolerofarman@gmail.com"});
-        modelo.addRow(new Object[]{"72190542","Alfonso",
-            "Molero Farman","5231468",28,"San Martín de Porres","Urb. Miguel Grau",
-            "alfonsomolerofarman@gmail.com"});
-        modelo.addRow(new Object[]{"72190542","Alfonso",
-            "Molero Farman","5231468",28,"San Martín de Porres","Urb. Miguel Grau",
-            "alfonsomolerofarman@gmail.com"});
-        modelo.addRow(new Object[]{"72190542","Alfonso",
-            "Molero Farman","5231468",28,"San Martín de Porres","Urb. Miguel Grau",
-            "alfonsomolerofarman@gmail.com"});
-        modelo.addRow(new Object[]{"72190542","Alfonso",
-            "Molero Farman","5231468",28,"San Martín de Porres","Urb. Miguel Grau",
-            "alfonsomolerofarman@gmail.com"});
-        modelo.addRow(new Object[]{"72190542","Alfonso",
-            "Molero Farman","5231468",28,"San Martín de Porres","Urb. Miguel Grau",
-            "alfonsomolerofarman@gmail.com"});
-        modelo.addRow(new Object[]{"72190542","Alfonso",
-            "Molero Farman","5231468",28,"San Martín de Porres","Urb. Miguel Grau",
-            "alfonsomolerofarman@gmail.com"});
-        modelo.addRow(new Object[]{"72190542","Alfonso",
-            "Molero Farman","5231468",28,"San Martín de Porres","Urb. Miguel Grau",
-            "alfonsomolerofarman@gmail.com"});
-        modelo.addRow(new Object[]{"72190542","Alfonso",
-            "Molero Farman","5231468",28,"San Martín de Porres","Urb. Miguel Grau",
-            "alfonsomolerofarman@gmail.com"});
-        modelo.addRow(new Object[]{"72190542","Alfonso",
-            "Molero Farman","5231468",28,"San Martín de Porres","Urb. Miguel Grau",
-            "alfonsomolerofarman@gmail.com"});
-        modelo.addRow(new Object[]{"72190542","Alfonso",
-            "Molero Farman","5231468",28,"San Martín de Porres","Urb. Miguel Grau",
-            "alfonsomolerofarman@gmail.com"});
-        modelo.addRow(new Object[]{"72190542","Alfonso",
-            "Molero Farman","5231468",28,"San Martín de Porres","Urb. Miguel Grau",
-            "alfonsomolerofarman@gmail.com"});
-        modelo.addRow(new Object[]{"72190542","Alfonso",
-            "Molero Farman","5231468",28,"San Martín de Porres","Urb. Miguel Grau",
-            "alfonsomolerofarman@gmail.com"});
-        modelo.addRow(new Object[]{"72190542","Alfonso",
-            "Molero Farman","5231468",28,"San Martín de Porres","Urb. Miguel Grau",
-            "alfonsomolerofarman@gmail.com"});
-        modelo.addRow(new Object[]{"72190542","Alfonso",
-            "Molero Farman","5231468",28,"San Martín de Porres","Urb. Miguel Grau",
-            "alfonsomolerofarman@gmail.com"});
-        modelo.addRow(new Object[]{"72190542","Alfonso",
-            "Molero Farman","5231468",28,"San Martín de Porres","Urb. Miguel Grau",
-            "alfonsomolerofarman@gmail.com"});
-        modelo.addRow(new Object[]{"72190542","Alfonso",
-            "Molero Farman","5231468",28,"San Martín de Porres","Urb. Miguel Grau",
-            "alfonsomolerofarman@gmail.com"});
-        modelo.addRow(new Object[]{"72190542","Alfonso",
-            "Molero Farman","5231468",28,"San Martín de Porres","Urb. Miguel Grau",
-            "alfonsomolerofarman@gmail.com"});
-        modelo.addRow(new Object[]{"72190542","Alfonso",
-            "Molero Farman","5231468",28,"San Martín de Porres","Urb. Miguel Grau",
-            "alfonsomolerofarman@gmail.com"});
-        modelo.addRow(new Object[]{"72190542","Alfonso",
-            "Molero Farman","5231468",28,"San Martín de Porres","Urb. Miguel Grau",
-            "alfonsomolerofarman@gmail.com"});
-        modelo.addRow(new Object[]{"72190542","Alfonso",
-            "Molero Farman","5231468",28,"San Martín de Porres","Urb. Miguel Grau",
-            "alfonsomolerofarman@gmail.com"});
-        modelo.addRow(new Object[]{"72190542","Alfonso",
-            "Molero Farman","5231468",28,"San Martín de Porres","Urb. Miguel Grau",
-            "alfonsomolerofarman@gmail.com"});
-        modelo.addRow(new Object[]{"72190542","Alfonso",
-            "Molero Farman","5231468",28,"San Martín de Porres","Urb. Miguel Grau",
-            "alfonsomolerofarman@gmail.com"});
-        modelo.addRow(new Object[]{"72190542","Alfonso",
-            "Molero Farman","5231468",28,"San Martín de Porres","Urb. Miguel Grau",
-            "alfonsomolerofarman@gmail.com"});
-        modelo.addRow(new Object[]{"72190542","Alfonso",
-            "Molero Farman","5231468",28,"San Martín de Porres","Urb. Miguel Grau",
-            "alfonsomolerofarman@gmail.com"});
-        modelo.addRow(new Object[]{"72190542","Alfonso",
-            "Molero Farman","5231468",28,"San Martín de Porres","Urb. Miguel Grau",
-            "alfonsomolerofarman@gmail.com"});
-        modelo.addRow(new Object[]{"72190542","Alfonso",
-            "Molero Farman","5231468",28,"San Martín de Porres","Urb. Miguel Grau",
-            "alfonsomolerofarman@gmail.com"});
-        modelo.addRow(new Object[]{"72190542","Alfonso",
-            "Molero Farman","5231468",28,"San Martín de Porres","Urb. Miguel Grau",
-            "alfonsomolerofarman@gmail.com"});
-        modelo.addRow(new Object[]{"72190542","Alfonso",
-            "Molero Farman","5231468",28,"San Martín de Porres","Urb. Miguel Grau",
-            "alfonsomolerofarman@gmail.com"});
-        modelo.addRow(new Object[]{"72190542","Alfonso",
-            "Molero Farman","5231468",28,"San Martín de Porres","Urb. Miguel Grau",
-            "alfonsomolerofarman@gmail.com"});
-        modelo.addRow(new Object[]{"72190542","Alfonso",
-            "Molero Farman","5231468",28,"San Martín de Porres","Urb. Miguel Grau",
-            "alfonsomolerofarman@gmail.com"});
-        modelo.addRow(new Object[]{"72190542","Alfonso",
-            "Molero Farman","5231468",28,"San Martín de Porres","Urb. Miguel Grau",
-            "alfonsomolerofarman@gmail.com"});
-        modelo.addRow(new Object[]{"72190542","Alfonso",
-            "Molero Farman","5231468",28,"San Martín de Porres","Urb. Miguel Grau",
-            "alfonsomolerofarman@gmail.com"});
-        modelo.addRow(new Object[]{"72190542","Alfonso",
-            "Molero Farman","5231468",28,"San Martín de Porres","Urb. Miguel Grau",
-            "alfonsomolerofarman@gmail.com"});
-        modelo.addRow(new Object[]{"72190542","Alfonso",
-            "Molero Farman","5231468",28,"San Martín de Porres","Urb. Miguel Grau",
-            "alfonsomolerofarman@gmail.com"});
-        modelo.addRow(new Object[]{"72190542","Alfonso",
-            "Molero Farman","5231468",28,"San Martín de Porres","Urb. Miguel Grau",
-            "alfonsomolerofarman@gmail.com"});
-        modelo.addRow(new Object[]{"72190542","Alfonso",
-            "Molero Farman","5231468",28,"San Martín de Porres","Urb. Miguel Grau",
-            "alfonsomolerofarman@gmail.com"});
-        modelo.addRow(new Object[]{"72190542","Alfonso",
-            "Molero Farman","5231468",28,"San Martín de Porres","Urb. Miguel Grau",
-            "alfonsomolerofarman@gmail.com"});
-        modelo.addRow(new Object[]{"72190542","Alfonso",
-            "Molero Farman","5231468",28,"San Martín de Porres","Urb. Miguel Grau",
-            "alfonsomolerofarman@gmail.com"});
-        modelo.addRow(new Object[]{"72190542","Alfonso",
-            "Molero Farman","5231468",28,"San Martín de Porres","Urb. Miguel Grau",
-            "alfonsomolerofarman@gmail.com"});
-        modelo.addRow(new Object[]{"72190542","Alfonso",
-            "Molero Farman","5231468",28,"San Martín de Porres","Urb. Miguel Grau",
-            "alfonsomolerofarman@gmail.com"});
-        modelo.addRow(new Object[]{"72190542","Alfonso",
-            "Molero Farman","5231468",28,"San Martín de Porres","Urb. Miguel Grau",
-            "alfonsomolerofarman@gmail.com"});
-        modelo.addRow(new Object[]{"72190542","Alfonso",
-            "Molero Farman","5231468",28,"San Martín de Porres","Urb. Miguel Grau",
-            "alfonsomolerofarman@gmail.com"});
-        modelo.addRow(new Object[]{"72190542","Alfonso",
-            "Molero Farman","5231468",28,"San Martín de Porres","Urb. Miguel Grau",
-            "alfonsomolerofarman@gmail.com"});
-        modelo.addRow(new Object[]{"72190542","Alfonso",
-            "Molero Farman","5231468",28,"San Martín de Porres","Urb. Miguel Grau",
-            "alfonsomolerofarman@gmail.com"});
-        modelo.addRow(new Object[]{"72190542","Alfonso",
-            "Molero Farman","5231468",28,"San Martín de Porres","Urb. Miguel Grau",
-            "alfonsomolerofarman@gmail.com"});
-        modelo.addRow(new Object[]{"72190542","Alfonso",
-            "Molero Farman","5231468",28,"San Martín de Porres","Urb. Miguel Grau",
-            "alfonsomolerofarman@gmail.com"});
-        modelo.addRow(new Object[]{"72190542","Alfonso",
-            "Molero Farman","5231468",28,"San Martín de Porres","Urb. Miguel Grau",
-            "alfonsomolerofarman@gmail.com"});
-        modelo.addRow(new Object[]{"72190542","Alfonso",
-            "Molero Farman","5231468",28,"San Martín de Porres","Urb. Miguel Grau",
-            "alfonsomolerofarman@gmail.com"});
-        modelo.addRow(new Object[]{"72190542","Alfonso",
-            "Molero Farman","5231468",28,"San Martín de Porres","Urb. Miguel Grau",
-            "alfonsomolerofarman@gmail.com"});
-        modelo.addRow(new Object[]{"72190542","Alfonso",
-            "Molero Farman","5231468",28,"San Martín de Porres","Urb. Miguel Grau",
-            "alfonsomolerofarman@gmail.com"});
-        modelo.addRow(new Object[]{"72190542","Alfonso",
-            "Molero Farman","5231468",28,"San Martín de Porres","Urb. Miguel Grau",
-            "alfonsomolerofarman@gmail.com"});
-        modelo.addRow(new Object[]{"72190542","Alfonso",
-            "Molero Farman","5231468",28,"San Martín de Porres","Urb. Miguel Grau",
-            "alfonsomolerofarman@gmail.com"});
-        modelo.addRow(new Object[]{"72190542","Alfonso",
-            "Molero Farman","5231468",28,"San Martín de Porres","Urb. Miguel Grau",
-            "alfonsomolerofarman@gmail.com"});
-        modelo.addRow(new Object[]{"72190542","Alfonso",
-            "Molero Farman","5231468",28,"San Martín de Porres","Urb. Miguel Grau",
-            "alfonsomolerofarman@gmail.com"});
-        modelo.addRow(new Object[]{"72190542","Alfonso",
-            "Molero Farman","5231468",28,"San Martín de Porres","Urb. Miguel Grau",
-            "alfonsomolerofarman@gmail.com"});
-        modelo.addRow(new Object[]{"72190542","Alfonso",
-            "Molero Farman","5231468",28,"San Martín de Porres","Urb. Miguel Grau",
-            "alfonsomolerofarman@gmail.com"});
-        modelo.addRow(new Object[]{"72190542","Alfonso",
-            "Molero Farman","5231468",28,"San Martín de Porres","Urb. Miguel Grau",
-            "alfonsomolerofarman@gmail.com"});
-        modelo.addRow(new Object[]{"72190542","Alfonso",
-            "Molero Farman","5231468",28,"San Martín de Porres","Urb. Miguel Grau",
-            "alfonsomolerofarman@gmail.com"});
-        modelo.addRow(new Object[]{"72190542","Alfonso",
-            "Molero Farman","5231468",28,"San Martín de Porres","Urb. Miguel Grau",
-            "alfonsomolerofarman@gmail.com"});
-        modelo.addRow(new Object[]{"72190542","Alfonso",
-            "Molero Farman","5231468",28,"San Martín de Porres","Urb. Miguel Grau",
-            "alfonsomolerofarman@gmail.com"});
-        modelo.addRow(new Object[]{"72190542","Alfonso",
-            "Molero Farman","5231468",28,"San Martín de Porres","Urb. Miguel Grau",
-            "alfonsomolerofarman@gmail.com"});
-        modelo.addRow(new Object[]{"72190542","Alfonso",
-            "Molero Farman","5231468",28,"San Martín de Porres","Urb. Miguel Grau",
-            "alfonsomolerofarman@gmail.com"});
-        modelo.addRow(new Object[]{"72190542","Alfonso",
-            "Molero Farman","5231468",28,"San Martín de Porres","Urb. Miguel Grau",
-            "alfonsomolerofarman@gmail.com"});
-        modelo.addRow(new Object[]{"72190542","Alfonso",
-            "Molero Farman","5231468",28,"San Martín de Porres","Urb. Miguel Grau",
-            "alfonsomolerofarman@gmail.com"});
-        modelo.addRow(new Object[]{"72190542","Alfonso",
-            "Molero Farman","5231468",28,"San Martín de Porres","Urb. Miguel Grau",
-            "alfonsomolerofarman@gmail.com"});
-        modelo.addRow(new Object[]{"72190542","Alfonso",
-            "Molero Farman","5231468",28,"San Martín de Porres","Urb. Miguel Grau",
-            "alfonsomolerofarman@gmail.com"});
-        modelo.addRow(new Object[]{"72190542","Alfonso",
-            "Molero Farman","5231468",28,"San Martín de Porres","Urb. Miguel Grau",
-            "alfonsomolerofarman@gmail.com"});
-        modelo.addRow(new Object[]{"72190542","Alfonso",
-            "Molero Farman","5231468",28,"San Martín de Porres","Urb. Miguel Grau",
-            "alfonsomolerofarman@gmail.com"});
-        modelo.addRow(new Object[]{"72190542","Alfonso",
-            "Molero Farman","5231468",28,"San Martín de Porres","Urb. Miguel Grau",
-            "alfonsomolerofarman@gmail.com"});
-        modelo.addRow(new Object[]{"72190542","Alfonso",
-            "Molero Farman","5231468",28,"San Martín de Porres","Urb. Miguel Grau",
-            "alfonsomolerofarman@gmail.com"});
-        modelo.addRow(new Object[]{"72190542","Alfonso",
-            "Molero Farman","5231468",28,"San Martín de Porres","Urb. Miguel Grau",
-            "alfonsomolerofarman@gmail.com"});
-        modelo.addRow(new Object[]{"72190542","Alfonso",
-            "Molero Farman","5231468",28,"San Martín de Porres","Urb. Miguel Grau",
-            "alfonsomolerofarman@gmail.com"});
-        modelo.addRow(new Object[]{"72190542","Alfonso",
-            "Molero Farman","5231468",28,"San Martín de Porres","Urb. Miguel Grau",
-            "alfonsomolerofarman@gmail.com"});
-        modelo.addRow(new Object[]{"72190542","Alfonso",
-            "Molero Farman","5231468",28,"San Martín de Porres","Urb. Miguel Grau",
-            "alfonsomolerofarman@gmail.com"});
-        modelo.addRow(new Object[]{"72190542","Alfonso",
-            "Molero Farman","5231468",28,"San Martín de Porres","Urb. Miguel Grau",
-            "alfonsomolerofarman@gmail.com"});
-        modelo.addRow(new Object[]{"72190542","Alfonso",
-            "Molero Farman","5231468",28,"San Martín de Porres","Urb. Miguel Grau",
-            "alfonsomolerofarman@gmail.com"});
-        modelo.addRow(new Object[]{"72190542","Alfonso",
-            "Molero Farman","5231468",28,"San Martín de Porres","Urb. Miguel Grau",
-            "alfonsomolerofarman@gmail.com"});
-        modelo.addRow(new Object[]{"72190542","Alfonso",
-            "Molero Farman","5231468",28,"San Martín de Porres","Urb. Miguel Grau",
-            "alfonsomolerofarman@gmail.com"});
-        modelo.addRow(new Object[]{"72190542","Alfonso",
-            "Molero Farman","5231468",28,"San Martín de Porres","Urb. Miguel Grau",
-            "alfonsomolerofarman@gmail.com"});
-        modelo.addRow(new Object[]{"72190542","Alfonso",
-            "Molero Farman","5231468",28,"San Martín de Porres","Urb. Miguel Grau",
-            "alfonsomolerofarman@gmail.com"});
-        modelo.addRow(new Object[]{"72190542","Alfonso",
-            "Molero Farman","5231468",28,"San Martín de Porres","Urb. Miguel Grau",
-            "alfonsomolerofarman@gmail.com"});
-        modelo.addRow(new Object[]{"72190542","Alfonso",
-            "Molero Farman","5231468",28,"San Martín de Porres","Urb. Miguel Grau",
-            "alfonsomolerofarman@gmail.com"});
+        UsuarioDAO usuarioDAO=new UsuarioDAO();
+        String nom=nomUsuario.getText();
+        String cod_usu=usuarioDAO.getCodigoUsuario(nom);
+        UsuarioBEAN usuario=new UsuarioBEAN();
+        usuario.setCodigo("U001");
+        ContactoDAO contactoDAO=new ContactoDAO();
+        lista=contactoDAO.listarContactos(usuario);
+        
+        for(ContactoBEAN obj:lista)
+        {
+            modelo.addRow(new Object[]{obj.getDni(),obj.getNombre(),
+            obj.getApellidoPat() + " " + obj.getApellidoMat(),obj.getTelefono(),obj.getEdad(),
+            obj.getDistrito(),obj.getDireccion(),obj.getCorreo()});
+        }
         
         scroll.setBounds(10,80,800,250);
         
@@ -326,6 +96,10 @@ public class PanelVentanaMostrarContactos extends JPanel
     public JComboBox getCbNombre() {
         return cbNombre;
     }
+
+//    public JTextField getNomUsuario() {
+//        return nomUsuario;
+//    }
     
     
 }

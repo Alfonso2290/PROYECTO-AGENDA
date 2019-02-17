@@ -116,6 +116,7 @@ public class VentanaPrincipalAdministrador extends JFrame implements ActionListe
         {
             VentanaMostrarContactos miVentana5=new VentanaMostrarContactos();
             miVentana5.setVisible(true);
+            miVentana5.nombre.setText(nombreUsuario.getText());
         }
         else if(e.getSource()==itemContactosEditar)
         {

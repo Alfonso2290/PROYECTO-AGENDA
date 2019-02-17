@@ -5,9 +5,11 @@ import PANELES.Administrador.PanelVentanaMostrarContactos;
 import javax.swing.*;
 import java.awt.*;
 
+
 public class VentanaMostrarContactos extends JFrame
 {
     private PanelVentanaMostrarContactos miPanel;
+    public JTextField nombre;
     
     public VentanaMostrarContactos()
     {
@@ -21,8 +23,16 @@ public class VentanaMostrarContactos extends JFrame
     
     private void Inicio()
     {
+        nombre=new JTextField();
+        
         miPanel=new PanelVentanaMostrarContactos();
+        miPanel.nomUsuario.setText(nombre.getText());
         miPanel.setBackground(Color.LIGHT_GRAY.brighter());
         add(miPanel);
     }
+
+//    public JTextField getNombre() {
+//        return nombre;
+//    }
+ 
 }
