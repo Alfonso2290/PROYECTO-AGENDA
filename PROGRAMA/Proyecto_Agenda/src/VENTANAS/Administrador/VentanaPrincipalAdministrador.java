@@ -82,7 +82,7 @@ public class VentanaPrincipalAdministrador extends JFrame implements ActionListe
             System.exit(0);
         }
         
-        if(e.getSource()==itemUsuarioCerrarSesion)
+        else if(e.getSource()==itemUsuarioCerrarSesion)
         {
             setVisible(false);
             VentanaPrincipal miVentana=new VentanaPrincipal();
@@ -90,7 +90,7 @@ public class VentanaPrincipalAdministrador extends JFrame implements ActionListe
             miVentana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         }
         
-        if(e.getSource()==itemCuentasNuevo)
+        else if(e.getSource()==itemCuentasNuevo)
         {
             VentanaRegistrarUsuario miVentana1=new VentanaRegistrarUsuario();
             miVentana1.setVisible(true);
@@ -106,7 +106,7 @@ public class VentanaPrincipalAdministrador extends JFrame implements ActionListe
             miVentana3.setVisible(true);
         }
         
-        if(e.getSource()==itemContactosNuevo)
+        else if(e.getSource()==itemContactosNuevo)
         {
             VentanaRegistrarContacto miVentana4=new VentanaRegistrarContacto();
             miVentana4.setVisible(true);

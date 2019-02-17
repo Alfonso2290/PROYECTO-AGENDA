@@ -156,6 +156,7 @@ public class ContactoDAO
             sql+="ON C.DNI=B.DNI ";
             sql+="WHERE A.CODIGO_USUARIO=?";
             instruccion=conexion.getConexionBD().prepareStatement(sql);
+            instruccion.setString(1,usuario.getCodigo());
             tabla=instruccion.executeQuery();
             lista=new ArrayList<ContactoBEAN>();
             
@@ -175,7 +176,6 @@ public class ContactoDAO
                 
                 lista.add(contacto);
             }
-            System.out.println(lista.size());
             
         } 
         catch (Exception e) {
