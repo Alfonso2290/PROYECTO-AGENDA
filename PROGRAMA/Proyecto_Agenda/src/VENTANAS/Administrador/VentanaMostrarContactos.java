@@ -9,7 +9,7 @@ import java.awt.*;
 public class VentanaMostrarContactos extends JFrame
 {
     private PanelVentanaMostrarContactos miPanel;
-    public JTextField nombre;
+    public JTextField nombre;//
     
     public VentanaMostrarContactos()
     {
@@ -26,7 +26,7 @@ public class VentanaMostrarContactos extends JFrame
         nombre=new JTextField();
         
         miPanel=new PanelVentanaMostrarContactos();
-        miPanel.nomUsuario.setText(nombre.getText());
+        miPanel.nomUsuario.setText(nombre.getText());//
         miPanel.setBackground(Color.LIGHT_GRAY.brighter());
         add(miPanel);
     }

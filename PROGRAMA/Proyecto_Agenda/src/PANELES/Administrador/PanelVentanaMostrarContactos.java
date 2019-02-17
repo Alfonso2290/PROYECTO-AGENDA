@@ -17,7 +17,7 @@ public class PanelVentanaMostrarContactos extends JPanel
     private JButton btnBuscar;
     private JComboBox cbDistrito,cbNombre;
     private ArrayList<ContactoBEAN> lista;
-    public JTextField nomUsuario;
+    public JTextField nomUsuario;//
     
     public PanelVentanaMostrarContactos()
     {
@@ -28,7 +28,7 @@ public class PanelVentanaMostrarContactos extends JPanel
     {
         
         setLayout(null);
-        nomUsuario=new JTextField();
+        nomUsuario=new JTextField();//
         
         cbNombre=new JComboBox();
         cbNombre.addItem("-Seleccionar Nombre-");
@@ -66,7 +66,7 @@ public class PanelVentanaMostrarContactos extends JPanel
         String nom=nomUsuario.getText();
         String cod_usu=usuarioDAO.getCodigoUsuario(nom);
         UsuarioBEAN usuario=new UsuarioBEAN();
-        usuario.setCodigo("U001");
+        usuario.setCodigo(cod_usu);
         ContactoDAO contactoDAO=new ContactoDAO();
         lista=contactoDAO.listarContactos(usuario);
         
