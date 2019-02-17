@@ -15,10 +15,11 @@ public class VentanaPrincipalAdministrador extends JFrame implements ActionListe
             itemCuentasEditar,itemCuentasVer,itemContactosNuevo,itemContactosEditar,
             itemContactosVer;
     private PanelVentanaPrincipalAdministrador miPanel;
-    private JTextField nombreUsuario;
+    private String nombreUsuario;
     
-    public VentanaPrincipalAdministrador()
+    public VentanaPrincipalAdministrador(String nombreUsuario)
     {
+        this.nombreUsuario=nombreUsuario;
         setTitle("Administrador");
         setSize(350,300);
         setResizable(false);
@@ -28,9 +29,6 @@ public class VentanaPrincipalAdministrador extends JFrame implements ActionListe
     
     private void Inicio()
     {
-        nombreUsuario=new JTextField();
-       
-        
         miPanel=new PanelVentanaPrincipalAdministrador();
         miPanel.setBackground(Color.LIGHT_GRAY.brighter());
         
@@ -108,15 +106,13 @@ public class VentanaPrincipalAdministrador extends JFrame implements ActionListe
         
         else if(e.getSource()==itemContactosNuevo)
         {
-            VentanaRegistrarContacto miVentana4=new VentanaRegistrarContacto();
+            VentanaRegistrarContacto miVentana4=new VentanaRegistrarContacto(nombreUsuario);
             miVentana4.setVisible(true);
-            miVentana4.getNombreUsuario().setText(nombreUsuario.getText());
         }
         else if(e.getSource()==itemContactosVer)
         {
-            VentanaMostrarContactos miVentana5=new VentanaMostrarContactos();
+            VentanaMostrarContactos miVentana5=new VentanaMostrarContactos(nombreUsuario);
             miVentana5.setVisible(true);
-            miVentana5.nombre.setText(nombreUsuario.getText());
         }
         else if(e.getSource()==itemContactosEditar)
         {
@@ -125,9 +121,11 @@ public class VentanaPrincipalAdministrador extends JFrame implements ActionListe
         }
     }
 
-    public JTextField getNombreUsuario() {
+    public String getNombreUsuario() {
         return nombreUsuario;
     }
+
+    
     
     
 }

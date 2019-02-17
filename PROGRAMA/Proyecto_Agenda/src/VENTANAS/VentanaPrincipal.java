@@ -78,9 +78,8 @@ public class VentanaPrincipal extends JFrame implements ActionListener
                     if(verificar==1)
                     {
                         setVisible(false);
-                        VentanaPrincipalAdministrador miVentana=new VentanaPrincipalAdministrador();
+                        VentanaPrincipalAdministrador miVentana=new VentanaPrincipalAdministrador(miPanel.getTxtusu().getText());
                         miVentana.setVisible(true);
-                        miVentana.getNombreUsuario().setText(miPanel.getTxtusu().getText());
                         miVentana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
                     }
                     else

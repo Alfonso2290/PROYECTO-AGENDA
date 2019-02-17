@@ -23,10 +23,11 @@ import javax.swing.*;
 public class VentanaRegistrarContacto extends JFrame implements ActionListener,FocusListener
 {
     private PanelVentanaRegistrarContacto miPanel;
-    private JTextField nombreUsuario;
+    private String nombreUsuario;
     
-    public VentanaRegistrarContacto()
+    public VentanaRegistrarContacto(String nombreUsuario)
     {
+        this.nombreUsuario=nombreUsuario;
         setTitle("Registrar Contacto");
         setSize(300,530);
         setResizable(false);
@@ -36,8 +37,6 @@ public class VentanaRegistrarContacto extends JFrame implements ActionListener,F
     
     private void Inicio()
     {
-        nombreUsuario=new JTextField();
-        
         miPanel=new PanelVentanaRegistrarContacto();
         miPanel.setBackground(Color.LIGHT_GRAY.brighter());
         
@@ -58,7 +57,6 @@ public class VentanaRegistrarContacto extends JFrame implements ActionListener,F
         
         if(e.getSource()==miPanel.getBtnGuardar())
         {
-            //setVisible(false);
             String nom,dni,apepa,apema,tele,dis,dir,cor,cod,stredad,nomusu;
             int edad;
             dni=miPanel.getTxtDni().getText();
@@ -70,7 +68,7 @@ public class VentanaRegistrarContacto extends JFrame implements ActionListener,F
             dir=miPanel.getTxtDir().getText();
             cor=miPanel.getTxtCor().getText();
             stredad=miPanel.getTxtEdad().getText();
-            nomusu=nombreUsuario.getText();
+            nomusu=nombreUsuario;
             
             if(dni.equals(""))
             {
@@ -168,7 +166,7 @@ public class VentanaRegistrarContacto extends JFrame implements ActionListener,F
         }
     }
 
-    public JTextField getNombreUsuario() {
+    public String getNombreUsuario() {
         return nombreUsuario;
     }
     
@@ -187,7 +185,7 @@ public class VentanaRegistrarContacto extends JFrame implements ActionListener,F
             ContactoBEAN contacto=new ContactoBEAN();
             contacto.setDni(dni);
             
-            String nomusu=nombreUsuario.getText();
+            String nomusu=nombreUsuario;
             UsuarioDAO usuario=new UsuarioDAO();
             String cod_usu=usuario.getCodigoUsuario(nomusu);
             UsuarioBEAN usu=new UsuarioBEAN();

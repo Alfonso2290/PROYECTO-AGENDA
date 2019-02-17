@@ -9,10 +9,11 @@ import java.awt.*;
 public class VentanaMostrarContactos extends JFrame
 {
     private PanelVentanaMostrarContactos miPanel;
-    public JTextField nombre;//
+    private String nombreUsuario;
     
-    public VentanaMostrarContactos()
+    public VentanaMostrarContactos(String nombreUsuario)
     {
+        this.nombreUsuario=nombreUsuario;
         setTitle("Agenda Contactos");
         Dimension tamañoPantalla=Toolkit.getDefaultToolkit().getScreenSize();
         setSize(tamañoPantalla.width*3/5,tamañoPantalla.height/2);
@@ -23,16 +24,12 @@ public class VentanaMostrarContactos extends JFrame
     
     private void Inicio()
     {
-        nombre=new JTextField();
-        
-        miPanel=new PanelVentanaMostrarContactos();
-        miPanel.nomUsuario.setText(nombre.getText());//
+        miPanel=new PanelVentanaMostrarContactos(nombreUsuario);
         miPanel.setBackground(Color.LIGHT_GRAY.brighter());
         add(miPanel);
     }
 
-//    public JTextField getNombre() {
-//        return nombre;
-//    }
- 
+    public String getNombreUsuario() {
+        return nombreUsuario;
+    }
 }

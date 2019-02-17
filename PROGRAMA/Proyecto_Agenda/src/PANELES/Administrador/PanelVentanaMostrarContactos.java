@@ -17,18 +17,17 @@ public class PanelVentanaMostrarContactos extends JPanel
     private JButton btnBuscar;
     private JComboBox cbDistrito,cbNombre;
     private ArrayList<ContactoBEAN> lista;
-    public JTextField nomUsuario;//
+    private String nombreUsuario;
     
-    public PanelVentanaMostrarContactos()
+    public PanelVentanaMostrarContactos(String nombreUsuario)
     {
+        this.nombreUsuario=nombreUsuario;
         Inicio();
     }
     
     private void Inicio()
     {
-        
         setLayout(null);
-        nomUsuario=new JTextField();//
         
         cbNombre=new JComboBox();
         cbNombre.addItem("-Seleccionar Nombre-");
@@ -63,8 +62,7 @@ public class PanelVentanaMostrarContactos extends JPanel
         tabla.setModel(modelo);
         
         UsuarioDAO usuarioDAO=new UsuarioDAO();
-        String nom=nomUsuario.getText();
-        String cod_usu=usuarioDAO.getCodigoUsuario(nom);
+        String cod_usu=usuarioDAO.getCodigoUsuario(nombreUsuario);
         UsuarioBEAN usuario=new UsuarioBEAN();
         usuario.setCodigo(cod_usu);
         ContactoDAO contactoDAO=new ContactoDAO();
@@ -97,9 +95,7 @@ public class PanelVentanaMostrarContactos extends JPanel
         return cbNombre;
     }
 
-//    public JTextField getNomUsuario() {
-//        return nomUsuario;
-//    }
-    
-    
+    public String getNombreUsuario() {
+        return nombreUsuario;
+    }
 }
