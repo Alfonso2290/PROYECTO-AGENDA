@@ -144,4 +144,190 @@ public class UsuarioDAO
         
         return codigo;
     }
+    
+    public ArrayList<UsuarioBEAN> getNombresUsuarios()
+    {
+        try 
+        {
+            conexion=new ConexionBD();
+            sql="SELECT DISTINCT NOMBRE_USUARIO FROM USUARIO";
+            instruccion=conexion.getConexionBD().prepareStatement(sql);
+            tabla=instruccion.executeQuery();
+            lista=new ArrayList<UsuarioBEAN>();
+            
+            while(tabla.next())
+            {
+                UsuarioBEAN usuario=new UsuarioBEAN();
+                usuario.setNombreUsuario(tabla.getString(1));
+                
+                lista.add(usuario);
+            }
+            
+        } 
+        catch (Exception e) {
+        }
+        
+        return lista;
+    }
+    
+    public ArrayList<UsuarioBEAN> getTiposUsuarios()
+    {
+        try 
+        {
+            conexion=new ConexionBD();
+            sql="SELECT DISTINCT TIPO FROM USUARIO";
+            instruccion=conexion.getConexionBD().prepareStatement(sql);
+            tabla=instruccion.executeQuery();
+            lista=new ArrayList<UsuarioBEAN>();
+            
+            while(tabla.next())
+            {
+                UsuarioBEAN usuario=new UsuarioBEAN();
+                usuario.setTipo(tabla.getString(1));
+                
+                lista.add(usuario);
+            }
+            
+        } 
+        catch (Exception e) {
+        }
+        
+        return lista;
+    }
+    
+    public ArrayList<UsuarioBEAN> listarUsuarios()
+    {
+        try 
+        {
+            conexion=new ConexionBD();
+            sql="SELECT * FROM USUARIO";
+            instruccion=conexion.getConexionBD().prepareStatement(sql);
+            tabla=instruccion.executeQuery();
+            lista=new ArrayList<UsuarioBEAN>();
+            
+            while(tabla.next())
+            {
+                UsuarioBEAN ususario=new UsuarioBEAN();
+                ususario.setCodigo(tabla.getString(1));
+                ususario.setNombreUsuario(tabla.getString(2));
+                ususario.setClave(tabla.getString(3));
+                ususario.setTipo(tabla.getString(4));
+                ususario.setNombre(tabla.getString(5));
+                ususario.setApellidoPat(tabla.getString(6));
+                ususario.setApellidoMat(tabla.getString(7));
+                ususario.setTelefono(tabla.getString(8));
+                ususario.setCorreo(tabla.getString(9));
+                
+                lista.add(ususario);
+            }
+            
+        } 
+        catch (Exception e) {
+        }
+        
+        return lista;
+    }
+    
+    public ArrayList<UsuarioBEAN> listarUsuariosFiltroUsuario(UsuarioBEAN usu)
+    {
+        try 
+        {
+            conexion=new ConexionBD();
+            sql="SELECT * FROM USUARIO WHERE NOMBRE_USUARIO=?";
+            instruccion=conexion.getConexionBD().prepareStatement(sql);
+            instruccion.setString(1,usu.getNombreUsuario());
+            tabla=instruccion.executeQuery();
+            lista=new ArrayList<UsuarioBEAN>();
+            
+            while(tabla.next())
+            {
+                UsuarioBEAN ususario=new UsuarioBEAN();
+                ususario.setCodigo(tabla.getString(1));
+                ususario.setNombreUsuario(tabla.getString(2));
+                ususario.setClave(tabla.getString(3));
+                ususario.setTipo(tabla.getString(4));
+                ususario.setNombre(tabla.getString(5));
+                ususario.setApellidoPat(tabla.getString(6));
+                ususario.setApellidoMat(tabla.getString(7));
+                ususario.setTelefono(tabla.getString(8));
+                ususario.setCorreo(tabla.getString(9));
+                
+                lista.add(ususario);
+            }
+            
+        } 
+        catch (Exception e) {
+        }
+        
+        return lista;
+    }
+    
+    public ArrayList<UsuarioBEAN> listarUsuariosFiltroTipoUsuario(UsuarioBEAN usu)
+    {
+        try 
+        {
+            conexion=new ConexionBD();
+            sql="SELECT * FROM USUARIO WHERE TIPO=?";
+            instruccion=conexion.getConexionBD().prepareStatement(sql);
+            instruccion.setString(1,usu.getTipo());
+            tabla=instruccion.executeQuery();
+            lista=new ArrayList<UsuarioBEAN>();
+            
+            while(tabla.next())
+            {
+                UsuarioBEAN ususario=new UsuarioBEAN();
+                ususario.setCodigo(tabla.getString(1));
+                ususario.setNombreUsuario(tabla.getString(2));
+                ususario.setClave(tabla.getString(3));
+                ususario.setTipo(tabla.getString(4));
+                ususario.setNombre(tabla.getString(5));
+                ususario.setApellidoPat(tabla.getString(6));
+                ususario.setApellidoMat(tabla.getString(7));
+                ususario.setTelefono(tabla.getString(8));
+                ususario.setCorreo(tabla.getString(9));
+                
+                lista.add(ususario);
+            }
+            
+        } 
+        catch (Exception e) {
+        }
+        
+        return lista;
+    }
+    
+    public ArrayList<UsuarioBEAN> listarUsuariosFiltroTipoUsuario_Usuario(UsuarioBEAN usu)
+    {
+        try 
+        {
+            conexion=new ConexionBD();
+            sql="SELECT * FROM USUARIO WHERE TIPO=? AND NOMBRE_USUARIO=?";
+            instruccion=conexion.getConexionBD().prepareStatement(sql);
+            instruccion.setString(1,usu.getTipo());
+            instruccion.setString(2,usu.getNombreUsuario());
+            tabla=instruccion.executeQuery();
+            lista=new ArrayList<UsuarioBEAN>();
+            
+            while(tabla.next())
+            {
+                UsuarioBEAN ususario=new UsuarioBEAN();
+                ususario.setCodigo(tabla.getString(1));
+                ususario.setNombreUsuario(tabla.getString(2));
+                ususario.setClave(tabla.getString(3));
+                ususario.setTipo(tabla.getString(4));
+                ususario.setNombre(tabla.getString(5));
+                ususario.setApellidoPat(tabla.getString(6));
+                ususario.setApellidoMat(tabla.getString(7));
+                ususario.setTelefono(tabla.getString(8));
+                ususario.setCorreo(tabla.getString(9));
+                
+                lista.add(ususario);
+            }
+            
+        } 
+        catch (Exception e) {
+        }
+        
+        return lista;
+    }
 }
