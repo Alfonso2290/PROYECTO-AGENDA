@@ -15,6 +15,29 @@ public class PersonaDAO
     private String sql="";
     private ArrayList <PersonaBEAN> lista=null;
     
+    
+    public int verificarPersona(PersonaBEAN persona)
+    {
+        int i=0;
+        try 
+        {
+            conexion=new ConexionBD();
+            sql="SELECT COUNT(*) FROM PERSONA ";
+            sql+="WHERE DNI=?";
+            instruccion=conexion.getConexionBD().prepareStatement(sql);
+            instruccion.setString(1, persona.getDni());
+            tabla=instruccion.executeQuery();
+            
+            if(tabla.next())
+                i=tabla.getInt(1);
+            
+        } 
+        catch (Exception e) {
+        }
+        
+        return i;
+    }
+    
     public void registraPersona(PersonaBEAN persona)
     {
         try 
