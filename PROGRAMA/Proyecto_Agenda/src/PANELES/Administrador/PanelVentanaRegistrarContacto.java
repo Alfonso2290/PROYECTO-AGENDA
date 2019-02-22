@@ -16,7 +16,6 @@ public class PanelVentanaRegistrarContacto extends JPanel
     
     public PanelVentanaRegistrarContacto()
     {
-        
         Inicio();
     }
     

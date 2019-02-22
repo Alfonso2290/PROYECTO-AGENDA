@@ -68,7 +68,7 @@ public class VentanaPrincipal extends JFrame implements ActionListener
                 else
                     miPanel.getMensaje().setText("A Usted le quedan " + (3-contador) + " intentos para acceder al Sistema");
                 
-                if(contador<3)
+                if(contador<4)
                 {
                     UsuarioBEAN usuario=new UsuarioBEAN();
                     usuario.setNombreUsuario(usu);
@@ -82,17 +82,17 @@ public class VentanaPrincipal extends JFrame implements ActionListener
                         miVentana.setVisible(true);
                         miVentana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
                     }
+                    else if(contador==3)
+                    {
+                        JOptionPane.showMessageDialog(null, "Usted ha superado el límite de intentos\nPrograma Finalizado!!");
+                        System.exit(0);
+                    }
                     else
                     {
                         JOptionPane.showMessageDialog(null, "El usuario y/o contraseña son incorrectos");
                         miPanel.limpiarCampos();
                         miPanel.getTxtusu().requestFocus();
                     }
-                }
-                else
-                {
-                    JOptionPane.showMessageDialog(null, "Usted ha superado el límite de intentos\nPrograma Finalizado!!");
-                    System.exit(0);
                 }
             }
         }

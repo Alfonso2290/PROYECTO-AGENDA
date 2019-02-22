@@ -22,7 +22,7 @@ public class UsuarioDAO
         {
             conexion=new ConexionBD();
             sql="SELECT COUNT(*) FROM USUARIO ";
-            sql+="WHERE NOMBRE=?";
+            sql+="WHERE NOMBRE_USUARIO=?";
             instruccion=conexion.getConexionBD().prepareStatement(sql);
             instruccion.setString(1, usuario.getNombreUsuario());
             tabla=instruccion.executeQuery();
@@ -42,13 +42,17 @@ public class UsuarioDAO
         try 
         {
             conexion=new ConexionBD();
-            sql="INSERT INTO USUARIO VALUES (?,?,?,?,?)";
+            sql="INSERT INTO USUARIO VALUES (?,?,?,?,?,?,?,?,?)";
             instruccion=conexion.getConexionBD().prepareStatement(sql);
             instruccion.setString(1, usuario.getCodigo());
             instruccion.setString(2, usuario.getNombreUsuario());
             instruccion.setString(3, usuario.getClave());
             instruccion.setString(4, usuario.getTipo());
-            instruccion.setString(5, usuario.getDni());
+            instruccion.setString(5, usuario.getNombre());
+            instruccion.setString(6, usuario.getApellidoPat());
+            instruccion.setString(7, usuario.getApellidoMat());
+            instruccion.setString(8, usuario.getTelefono());
+            instruccion.setString(9, usuario.getCorreo());
             instruccion.executeUpdate();
             JOptionPane.showMessageDialog(null, "Usted ha registrado el nuevo usuario exitosamente");        
         } 
@@ -98,7 +102,7 @@ public class UsuarioDAO
         try 
         {
             conexion=new ConexionBD();
-            sql="SELECT NOMBRE,CLAVE FROM USUARIO WHERE NOMBRE=? AND CLAVE=?";
+            sql="SELECT NOMBRE_USUARIO,CLAVE FROM USUARIO WHERE NOMBRE_USUARIO=? AND CLAVE=?";
             instruccion=conexion.getConexionBD().prepareStatement(sql);
             instruccion.setString(1,usu.getNombreUsuario());
             instruccion.setString(2,usu.getClave());
@@ -123,7 +127,7 @@ public class UsuarioDAO
         try 
         {
             conexion=new ConexionBD();
-            sql="SELECT CODIGO FROM USUARIO WHERE NOMBRE=?";
+            sql="SELECT CODIGO FROM USUARIO WHERE NOMBRE_USUARIO=?";
             instruccion=conexion.getConexionBD().prepareStatement(sql);
             instruccion.setString(1,nombre);
             tabla=instruccion.executeQuery();

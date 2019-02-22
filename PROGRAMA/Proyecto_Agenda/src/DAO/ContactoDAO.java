@@ -54,10 +54,18 @@ public class ContactoDAO
         try 
         {
             conexion=new ConexionBD();
-            sql="INSERT INTO CONTACTO VALUES (?,?)";
+            sql="INSERT INTO CONTACTO VALUES (?,?,?,?,?,?,?,?,?,?)";
             instruccion=conexion.getConexionBD().prepareStatement(sql);
             instruccion.setString(1, contacto.getCodigo());
             instruccion.setString(2, contacto.getDni());
+            instruccion.setString(3, contacto.getNombre());
+            instruccion.setString(4, contacto.getApellidoPat());
+            instruccion.setString(5, contacto.getApellidoMat());
+            instruccion.setString(6, contacto.getTelefono());
+            instruccion.setInt(7, contacto.getEdad());
+            instruccion.setString(8, contacto.getDistrito());
+            instruccion.setString(9, contacto.getDireccion());
+            instruccion.setString(10, contacto.getCorreo());
             instruccion.executeUpdate();
                     
             tabla.close();
@@ -68,15 +76,21 @@ public class ContactoDAO
         }
     }
     
-    public int verificarPersona(ContactoBEAN contacto)
+    public int verificarPersona(ContactoBEAN contacto,UsuarioBEAN usuario)
     {
         int i=0;
         try 
         {
             conexion=new ConexionBD();
-            sql="SELECT DNI FROM CONTACTO WHERE DNI=?";
+            sql="SELECT DNI ";
+            sql+="FROM AGENDA A INNER JOIN CONTACTO B  ";
+            sql+="ON A.CODIGO_CONTACTO = B.CODIGO ";
+            sql+="INNER JOIN USUARIO C ";
+            sql+="ON C.CODIGO=A.CODIGO_USUARIO ";
+            sql+="WHERE C.CODIGO=? AND B.DNI=?";
             instruccion=conexion.getConexionBD().prepareStatement(sql);
-            instruccion.setString(1, contacto.getDni());
+            instruccion.setString(1, usuario.getCodigo());
+            instruccion.setString(2, contacto.getDni());
             tabla=instruccion.executeQuery();
             
             if(tabla.next())
@@ -92,7 +106,7 @@ public class ContactoDAO
         return i;
     }
     
-    public String getCodigoContacto(ContactoBEAN contacto)
+    public String getCodigoContactol(ContactoBEAN contacto)
     {
         String codigo="";
         try 
@@ -148,12 +162,10 @@ public class ContactoDAO
         try 
         {
             conexion=new ConexionBD();
-            sql="SELECT B.CODIGO,C.DNI,C.NOMBRE,C.APELLIDOPAT, ";
-            sql+="C.APELLIDOMAT,C.TELEFONO,C.EDAD,C.DISTRITO,C.DIRECCION,C.CORREO ";
+            sql="SELECT B.CODIGO,B.DNI,B.NOMBRE,B.APELLIDOPAT, ";
+            sql+="B.APELLIDOMAT,B.TELEFONO,B.EDAD,B.DISTRITO,B.DIRECCION,B.CORREO ";
             sql+="FROM AGENDA A INNER JOIN CONTACTO B  ";
             sql+="ON A.CODIGO_CONTACTO = B.CODIGO ";
-            sql+="INNER JOIN PERSONA C ";
-            sql+="ON C.DNI=B.DNI ";
             sql+="WHERE A.CODIGO_USUARIO=?";
             instruccion=conexion.getConexionBD().prepareStatement(sql);
             instruccion.setString(1,usuario.getCodigo());
@@ -189,11 +201,9 @@ public class ContactoDAO
         try 
         {
             conexion=new ConexionBD();
-            sql="SELECT DISTINCT C.NOMBRE ";
+            sql="SELECT DISTINCT B.NOMBRE ";
             sql+="FROM AGENDA A INNER JOIN CONTACTO B  ";
             sql+="ON A.CODIGO_CONTACTO = B.CODIGO ";
-            sql+="INNER JOIN PERSONA C ";
-            sql+="ON C.DNI=B.DNI ";
             sql+="WHERE A.CODIGO_USUARIO=? ";
             instruccion=conexion.getConexionBD().prepareStatement(sql);
             instruccion.setString(1, usuario.getCodigo());
@@ -220,11 +230,9 @@ public class ContactoDAO
         try 
         {
             conexion=new ConexionBD();
-            sql="SELECT DISTINCT C.DISTRITO ";
+            sql="SELECT DISTINCT B.DISTRITO ";
             sql+="FROM AGENDA A INNER JOIN CONTACTO B  ";
             sql+="ON A.CODIGO_CONTACTO = B.CODIGO ";
-            sql+="INNER JOIN PERSONA C ";
-            sql+="ON C.DNI=B.DNI ";
             sql+="WHERE A.CODIGO_USUARIO=? ";
             instruccion=conexion.getConexionBD().prepareStatement(sql);
             instruccion.setString(1, usuario.getCodigo());
@@ -251,13 +259,11 @@ public class ContactoDAO
         try 
         {
             conexion=new ConexionBD();
-            sql="SELECT B.CODIGO,C.DNI,C.NOMBRE,C.APELLIDOPAT, ";
-            sql+="C.APELLIDOMAT,C.TELEFONO,C.EDAD,C.DISTRITO,C.DIRECCION,C.CORREO ";
+            sql="SELECT B.CODIGO,B.DNI,B.NOMBRE,B.APELLIDOPAT, ";
+            sql+="B.APELLIDOMAT,B.TELEFONO,B.EDAD,B.DISTRITO,B.DIRECCION,B.CORREO ";
             sql+="FROM AGENDA A INNER JOIN CONTACTO B  ";
             sql+="ON A.CODIGO_CONTACTO = B.CODIGO ";
-            sql+="INNER JOIN PERSONA C ";
-            sql+="ON C.DNI=B.DNI ";
-            sql+="WHERE A.CODIGO_USUARIO=? AND C.NOMBRE=?";
+            sql+="WHERE A.CODIGO_USUARIO=? AND B.NOMBRE=?";
             instruccion=conexion.getConexionBD().prepareStatement(sql);
             instruccion.setString(1,usuario.getCodigo());
             instruccion.setString(2,cont.getNombre());
@@ -293,13 +299,11 @@ public class ContactoDAO
         try 
         {
             conexion=new ConexionBD();
-            sql="SELECT B.CODIGO,C.DNI,C.NOMBRE,C.APELLIDOPAT, ";
-            sql+="C.APELLIDOMAT,C.TELEFONO,C.EDAD,C.DISTRITO,C.DIRECCION,C.CORREO ";
+            sql="SELECT B.CODIGO,B.DNI,B.NOMBRE,B.APELLIDOPAT, ";
+            sql+="B.APELLIDOMAT,B.TELEFONO,B.EDAD,B.DISTRITO,B.DIRECCION,B.CORREO ";
             sql+="FROM AGENDA A INNER JOIN CONTACTO B  ";
             sql+="ON A.CODIGO_CONTACTO = B.CODIGO ";
-            sql+="INNER JOIN PERSONA C ";
-            sql+="ON C.DNI=B.DNI ";
-            sql+="WHERE A.CODIGO_USUARIO=? AND C.NOMBRE=? AND C.DISTRITO=?";
+            sql+="WHERE A.CODIGO_USUARIO=? AND B.NOMBRE=? AND B.DISTRITO=?";
             instruccion=conexion.getConexionBD().prepareStatement(sql);
             instruccion.setString(1,usuario.getCodigo());
             instruccion.setString(2,cont.getNombre());
@@ -336,13 +340,11 @@ public class ContactoDAO
         try 
         {
             conexion=new ConexionBD();
-            sql="SELECT B.CODIGO,C.DNI,C.NOMBRE,C.APELLIDOPAT, ";
-            sql+="C.APELLIDOMAT,C.TELEFONO,C.EDAD,C.DISTRITO,C.DIRECCION,C.CORREO ";
+            sql="SELECT B.CODIGO,B.DNI,B.NOMBRE,B.APELLIDOPAT, ";
+            sql+="B.APELLIDOMAT,B.TELEFONO,B.EDAD,B.DISTRITO,B.DIRECCION,B.CORREO ";
             sql+="FROM AGENDA A INNER JOIN CONTACTO B  ";
             sql+="ON A.CODIGO_CONTACTO = B.CODIGO ";
-            sql+="INNER JOIN PERSONA C ";
-            sql+="ON C.DNI=B.DNI ";
-            sql+="WHERE A.CODIGO_USUARIO=? AND C.DISTRITO=?";
+            sql+="WHERE A.CODIGO_USUARIO=? AND B.DISTRITO=?";
             instruccion=conexion.getConexionBD().prepareStatement(sql);
             instruccion.setString(1,usuario.getCodigo());
             instruccion.setString(2,cont.getDistrito());

@@ -1,11 +1,10 @@
 /*
     FALTA VALIDAR CORREO
+    PONER * EN CAMPOS OBLIGATORIOS
 */
 package VENTANAS.Administrador;
 
-import BEAN.PersonaBEAN;
 import BEAN.UsuarioBEAN;
-import DAO.PersonaDAO;
 import DAO.UsuarioDAO;
 import PANELES.Administrador.PanelVentanaRegistrarPersona;
 import java.awt.Color;
@@ -23,7 +22,7 @@ public class VentanaRegistrarPersona extends JFrame implements ActionListener
         this.Clave=Clave;
         this.tipoUsuario=tipoUsuario;
         setTitle("Registrar Datos Personales");
-        setSize(300,550);
+        setSize(300,390);
         setResizable(false);
         setLocationRelativeTo(null);
         Inicio();
@@ -52,24 +51,14 @@ public class VentanaRegistrarPersona extends JFrame implements ActionListener
         
         if(e.getSource()==miPanel.getBtnFinalizar())
         {
-            String nom,dni,apepa,apema,tele,dis,dir,cor,cod,stredad;
-            int edad;
-            dni=miPanel.getTxtDni().getText();
+            String nom,apepa,apema,tele,cor,cod;
             nom=miPanel.getTxtNom().getText();
             apepa=miPanel.getTxtApepa().getText();
             apema=miPanel.getTxtApema().getText();
             tele=miPanel.getTxtTele().getText();
-            dis=miPanel.getCbdis().getSelectedItem().toString();
-            dir=miPanel.getTxtDir().getText();
             cor=miPanel.getTxtCor().getText();
-            stredad=miPanel.getTxtEdad().getText();
             
-            if(dni.equals(""))
-            {
-                JOptionPane.showMessageDialog(null, "Ustede debe llenar el campo DNI");
-                miPanel.getTxtDni().requestFocus();
-            }
-            else if(nom.equals(""))
+            if(nom.equals(""))
             {
                 JOptionPane.showMessageDialog(null, "Ustede debe llenar el campo Nombre");
                 miPanel.getTxtNom().requestFocus();
@@ -84,16 +73,6 @@ public class VentanaRegistrarPersona extends JFrame implements ActionListener
                 JOptionPane.showMessageDialog(null, "Ustede debe llenar el campo Apellido Materno");
                 miPanel.getTxtApema().requestFocus();
             }
-            else if(dis.equals("-Seleccionar-"))
-            {
-                JOptionPane.showMessageDialog(null, "Ustede debe seleccionar el campo Distrito");
-                miPanel.getCbdis().requestFocus();
-            }
-            else if(dir.equals(""))
-            {
-                JOptionPane.showMessageDialog(null, "Ustede debe llenar el campo Dirección");
-                miPanel.getTxtDir().requestFocus();
-            }
             else if(tele.equals(""))
             {
                 JOptionPane.showMessageDialog(null, "Ustede debe llenar el campo Teléfono");
@@ -104,39 +83,22 @@ public class VentanaRegistrarPersona extends JFrame implements ActionListener
                 JOptionPane.showMessageDialog(null, "Ustede debe llenar el campo Correo Electrónico");
                 miPanel.getTxtCor().requestFocus();
             }
-            else if(stredad.equals(""))
-            {
-                JOptionPane.showMessageDialog(null, "Ustede debe llenar el campo Edad");
-                miPanel.getTxtEdad().requestFocus();
-            }
             else
             {
-                if(miPanel.getMensaje2().getText().equals("")==false)
-                    JOptionPane.showMessageDialog(null, "La persona que intenta registrar ya esta registrada...Se proseguirá a registrar la cuenta de Usuario pero no se tomaran en cuenta los datos personales ingresados");
-                edad=Integer.parseInt(stredad);
-                PersonaBEAN persona=new PersonaBEAN();
-                persona.setApellidoMat(apema);
-                persona.setApellidoPat(apepa);
-                persona.setCorreo(cor);
-                persona.setDireccion(dir);
-                persona.setDistrito(dis);
-                persona.setDni(dni);
-                persona.setEdad(edad);
-                persona.setNombre(nom);
-                persona.setTelefono(tele);
-                
-                PersonaDAO personaDAO=new PersonaDAO();
                 UsuarioDAO usuarioDAO=new UsuarioDAO();
                 String codigo=usuarioDAO.generarCodigo();
                 
                 UsuarioBEAN usuario=new UsuarioBEAN();
                 usuario.setCodigo(codigo);
-                usuario.setDni(dni);
                 usuario.setNombreUsuario(nombreUsuario);
                 usuario.setClave(Clave);
                 usuario.setTipo(tipoUsuario);
+                usuario.setApellidoMat(apema);
+                usuario.setApellidoPat(apepa);
+                usuario.setCorreo(cor);
+                usuario.setNombre(nom);
+                usuario.setTelefono(tele);
                 
-                personaDAO.registraPersona(persona);
                 usuarioDAO.registraUsuario(usuario);
 
                 setVisible(false);

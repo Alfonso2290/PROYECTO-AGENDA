@@ -8,11 +8,9 @@ package VENTANAS.Administrador;
 
 import BEAN.AgendaBEAN;
 import BEAN.ContactoBEAN;
-import BEAN.PersonaBEAN;
 import BEAN.UsuarioBEAN;
 import DAO.AgendaDAO;
 import DAO.ContactoDAO;
-import DAO.PersonaDAO;
 import DAO.UsuarioDAO;
 import PANELES.Administrador.PanelVentanaRegistrarContacto;
 import java.awt.Color;
@@ -118,18 +116,7 @@ public class VentanaRegistrarContacto extends JFrame implements ActionListener,F
             else
             {
                 edad=Integer.parseInt(stredad);
-                PersonaBEAN persona=new PersonaBEAN();
-                persona.setApellidoMat(apema);
-                persona.setApellidoPat(apepa);
-                persona.setCorreo(cor);
-                persona.setDireccion(dir);
-                persona.setDistrito(dis);
-                persona.setDni(dni);
-                persona.setEdad(edad);
-                persona.setNombre(nom);
-                persona.setTelefono(tele);
                 
-                PersonaDAO personaDAO=new PersonaDAO();
                 ContactoDAO contactoDAO=new ContactoDAO();
                 String codigo=contactoDAO.generarCodigo();
                 AgendaDAO agendaDAO=new AgendaDAO();
@@ -139,13 +126,22 @@ public class VentanaRegistrarContacto extends JFrame implements ActionListener,F
                 ContactoBEAN contacto=new ContactoBEAN();
                 contacto.setCodigo(codigo);
                 contacto.setDni(dni);
+                contacto.setApellidoMat(apema);
+                contacto.setApellidoPat(apepa);
+                contacto.setCorreo(cor);
+                contacto.setDireccion(dir);
+                contacto.setDistrito(dis);
+                contacto.setEdad(edad);
+                contacto.setNombre(nom);
+                contacto.setTelefono(tele);
                 
                 AgendaBEAN agenda=new AgendaBEAN();
                 agenda.setCodigoUsuario(cod_usu);
                 
-                personaDAO.registraPersona(persona);
+                UsuarioBEAN usu=new UsuarioBEAN();
+                usu.setCodigo(cod_usu);
                 
-                int verificarDNI=contactoDAO.verificarPersona(contacto);
+                int verificarDNI=contactoDAO.verificarPersona(contacto,usu);
                 
                 if(verificarDNI==0)
                 {
@@ -155,9 +151,7 @@ public class VentanaRegistrarContacto extends JFrame implements ActionListener,F
                 }
                 else
                 {
-                    String cod_contacto=contactoDAO.getCodigoContacto(contacto);
-                    agenda.setCodigoContacto(cod_contacto);
-                    agendaDAO.registraAgenda(agenda);
+                    JOptionPane.showMessageDialog(null, "Error!!..Verifique los datos ingresados");
                 }
                 
                 miPanel.limpiarCampos();
