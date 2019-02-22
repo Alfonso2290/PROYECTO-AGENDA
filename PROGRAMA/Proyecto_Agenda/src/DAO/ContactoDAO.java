@@ -183,4 +183,193 @@ public class ContactoDAO
         
         return lista;
     }
+    
+    public ArrayList<ContactoBEAN> getNombresContactos(UsuarioBEAN usuario)
+    {
+        try 
+        {
+            conexion=new ConexionBD();
+            sql="SELECT DISTINCT C.NOMBRE ";
+            sql+="FROM AGENDA A INNER JOIN CONTACTO B  ";
+            sql+="ON A.CODIGO_CONTACTO = B.CODIGO ";
+            sql+="INNER JOIN PERSONA C ";
+            sql+="ON C.DNI=B.DNI ";
+            sql+="WHERE A.CODIGO_USUARIO=? ";
+            instruccion=conexion.getConexionBD().prepareStatement(sql);
+            instruccion.setString(1, usuario.getCodigo());
+            tabla=instruccion.executeQuery();
+            lista=new ArrayList<ContactoBEAN>();
+            
+            while(tabla.next())
+            {
+                ContactoBEAN contacto=new ContactoBEAN();
+                contacto.setNombre(tabla.getString(1));
+                
+                lista.add(contacto);
+            }
+            
+        } 
+        catch (Exception e) {
+        }
+        
+        return lista;
+    }
+    
+    public ArrayList<ContactoBEAN> getDristritosContactos(UsuarioBEAN usuario)
+    {
+        try 
+        {
+            conexion=new ConexionBD();
+            sql="SELECT DISTINCT C.DISTRITO ";
+            sql+="FROM AGENDA A INNER JOIN CONTACTO B  ";
+            sql+="ON A.CODIGO_CONTACTO = B.CODIGO ";
+            sql+="INNER JOIN PERSONA C ";
+            sql+="ON C.DNI=B.DNI ";
+            sql+="WHERE A.CODIGO_USUARIO=? ";
+            instruccion=conexion.getConexionBD().prepareStatement(sql);
+            instruccion.setString(1, usuario.getCodigo());
+            tabla=instruccion.executeQuery();
+            lista=new ArrayList<ContactoBEAN>();
+            
+            while(tabla.next())
+            {
+                ContactoBEAN contacto=new ContactoBEAN();
+                contacto.setDistrito(tabla.getString(1));
+                
+                lista.add(contacto);
+            }
+            
+        } 
+        catch (Exception e) {
+        }
+        
+        return lista;
+    }
+    
+    public ArrayList<ContactoBEAN> listarContactosFiltroNombres(UsuarioBEAN usuario,ContactoBEAN cont)
+    {
+        try 
+        {
+            conexion=new ConexionBD();
+            sql="SELECT B.CODIGO,C.DNI,C.NOMBRE,C.APELLIDOPAT, ";
+            sql+="C.APELLIDOMAT,C.TELEFONO,C.EDAD,C.DISTRITO,C.DIRECCION,C.CORREO ";
+            sql+="FROM AGENDA A INNER JOIN CONTACTO B  ";
+            sql+="ON A.CODIGO_CONTACTO = B.CODIGO ";
+            sql+="INNER JOIN PERSONA C ";
+            sql+="ON C.DNI=B.DNI ";
+            sql+="WHERE A.CODIGO_USUARIO=? AND C.NOMBRE=?";
+            instruccion=conexion.getConexionBD().prepareStatement(sql);
+            instruccion.setString(1,usuario.getCodigo());
+            instruccion.setString(2,cont.getNombre());
+            tabla=instruccion.executeQuery();
+            lista=new ArrayList<ContactoBEAN>();
+            
+            while(tabla.next())
+            {
+                ContactoBEAN contacto=new ContactoBEAN();
+                contacto.setCodigo(tabla.getString(1));
+                contacto.setDni(tabla.getString(2));
+                contacto.setNombre(tabla.getString(3));
+                contacto.setApellidoPat(tabla.getString(4));
+                contacto.setApellidoMat(tabla.getString(5));
+                contacto.setTelefono(tabla.getString(6));
+                contacto.setEdad(tabla.getInt(7));
+                contacto.setDistrito(tabla.getString(8));
+                contacto.setDireccion(tabla.getString(9));
+                contacto.setCorreo(tabla.getString(10));
+                
+                lista.add(contacto);
+            }
+            
+        } 
+        catch (Exception e) {
+        }
+        
+        return lista;
+    }
+    
+    public ArrayList<ContactoBEAN> listarContactosFiltroNombresDistritos(UsuarioBEAN usuario,ContactoBEAN cont)
+    {
+        try 
+        {
+            conexion=new ConexionBD();
+            sql="SELECT B.CODIGO,C.DNI,C.NOMBRE,C.APELLIDOPAT, ";
+            sql+="C.APELLIDOMAT,C.TELEFONO,C.EDAD,C.DISTRITO,C.DIRECCION,C.CORREO ";
+            sql+="FROM AGENDA A INNER JOIN CONTACTO B  ";
+            sql+="ON A.CODIGO_CONTACTO = B.CODIGO ";
+            sql+="INNER JOIN PERSONA C ";
+            sql+="ON C.DNI=B.DNI ";
+            sql+="WHERE A.CODIGO_USUARIO=? AND C.NOMBRE=? AND C.DISTRITO=?";
+            instruccion=conexion.getConexionBD().prepareStatement(sql);
+            instruccion.setString(1,usuario.getCodigo());
+            instruccion.setString(2,cont.getNombre());
+            instruccion.setString(3,cont.getDistrito());
+            tabla=instruccion.executeQuery();
+            lista=new ArrayList<ContactoBEAN>();
+            
+            while(tabla.next())
+            {
+                ContactoBEAN contacto=new ContactoBEAN();
+                contacto.setCodigo(tabla.getString(1));
+                contacto.setDni(tabla.getString(2));
+                contacto.setNombre(tabla.getString(3));
+                contacto.setApellidoPat(tabla.getString(4));
+                contacto.setApellidoMat(tabla.getString(5));
+                contacto.setTelefono(tabla.getString(6));
+                contacto.setEdad(tabla.getInt(7));
+                contacto.setDistrito(tabla.getString(8));
+                contacto.setDireccion(tabla.getString(9));
+                contacto.setCorreo(tabla.getString(10));
+                
+                lista.add(contacto);
+            }
+            
+        } 
+        catch (Exception e) {
+        }
+        
+        return lista;
+    }
+    
+    public ArrayList<ContactoBEAN> listarContactosFiltroDistritos(UsuarioBEAN usuario,ContactoBEAN cont)
+    {
+        try 
+        {
+            conexion=new ConexionBD();
+            sql="SELECT B.CODIGO,C.DNI,C.NOMBRE,C.APELLIDOPAT, ";
+            sql+="C.APELLIDOMAT,C.TELEFONO,C.EDAD,C.DISTRITO,C.DIRECCION,C.CORREO ";
+            sql+="FROM AGENDA A INNER JOIN CONTACTO B  ";
+            sql+="ON A.CODIGO_CONTACTO = B.CODIGO ";
+            sql+="INNER JOIN PERSONA C ";
+            sql+="ON C.DNI=B.DNI ";
+            sql+="WHERE A.CODIGO_USUARIO=? AND C.DISTRITO=?";
+            instruccion=conexion.getConexionBD().prepareStatement(sql);
+            instruccion.setString(1,usuario.getCodigo());
+            instruccion.setString(2,cont.getDistrito());
+            tabla=instruccion.executeQuery();
+            lista=new ArrayList<ContactoBEAN>();
+            
+            while(tabla.next())
+            {
+                ContactoBEAN contacto=new ContactoBEAN();
+                contacto.setCodigo(tabla.getString(1));
+                contacto.setDni(tabla.getString(2));
+                contacto.setNombre(tabla.getString(3));
+                contacto.setApellidoPat(tabla.getString(4));
+                contacto.setApellidoMat(tabla.getString(5));
+                contacto.setTelefono(tabla.getString(6));
+                contacto.setEdad(tabla.getInt(7));
+                contacto.setDistrito(tabla.getString(8));
+                contacto.setDireccion(tabla.getString(9));
+                contacto.setCorreo(tabla.getString(10));
+                
+                lista.add(contacto);
+            }
+            
+        } 
+        catch (Exception e) {
+        }
+        
+        return lista;
+    }
 }

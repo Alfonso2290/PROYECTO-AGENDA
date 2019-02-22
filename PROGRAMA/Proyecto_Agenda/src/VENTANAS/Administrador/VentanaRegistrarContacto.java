@@ -123,7 +123,7 @@ public class VentanaRegistrarContacto extends JFrame implements ActionListener,F
                 persona.setApellidoPat(apepa);
                 persona.setCorreo(cor);
                 persona.setDireccion(dir);
-                persona.setDistrito(dir);
+                persona.setDistrito(dis);
                 persona.setDni(dni);
                 persona.setEdad(edad);
                 persona.setNombre(nom);
