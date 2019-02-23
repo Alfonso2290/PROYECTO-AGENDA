@@ -1,9 +1,7 @@
 
 package PANELES.Usuario;
 
-import BEAN.ContactoBEAN;
-import java.awt.Color;
-import java.awt.Font;
+import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
 
@@ -12,7 +10,9 @@ public class PanelVentanaRegistrarContactoUsuario extends JPanel
     private JLabel mensaje,titulo,nom,dni,apepa,apema,tele,edad,dis,dir,cor;
     private JTextField txtNom,txtDni,txtApepa,txtApema,txtTele,txtEdad,txtDir,txtCor;
     private JComboBox cbdis;
-    private JButton btnGuardar,btnCancelar,btnAtras;
+    private JButton btnGuardar,btnCancelar;
+    private JSeparator h1,h2,h3,h4,h5,h6,h7,h8,h9;
+    private JLabel icono1,icono2,icono3,icono4,icono5,icono6,icono7,icono8,icono9;
     
     public PanelVentanaRegistrarContactoUsuario()
     {
@@ -22,112 +22,179 @@ public class PanelVentanaRegistrarContactoUsuario extends JPanel
     private void Inicio()
     {
         setLayout(null);
-        Font fuenteMensaje=new Font("Arial",Font.ITALIC,10);
-        Font fuenteTitulo=new Font("Arial", Font.BOLD, 16);
-        Font fuenteCampos=new Font("Arial", Font.BOLD, 12);
+        Color ColorFuente=new Color(232,44,12);
+        Font fuenteTitulo=new Font("Decker", Font.BOLD, 20);
+        Font fuenteCampos=new Font("Decker", Font.PLAIN, 14);
+        Font fuenteCamposLabel=new Font("Decker", Font.BOLD, 16);
+        Font fuenteMensaje=new Font("Decker",Font.PLAIN,12);
         
         titulo=new JLabel("REGISTRAR CONTACTO");
-        titulo.setBounds(50,10,200,30);
+        titulo.setBounds(70,10,300,30);
         titulo.setFont(fuenteTitulo);
+        titulo.setForeground(ColorFuente);
         
-        dni=new JLabel("DNI:");
-        dni.setBounds(20,60,80,20);
-        dni.setFont(fuenteCampos);
+        dni=new JLabel("DNI");
+        dni.setBounds(50,70,120,20);
+        dni.setFont(fuenteCamposLabel);
+        dni.setForeground(ColorFuente);
         
         txtDni=new JTextField();
-        txtDni.setBounds(135,60,120,20);
+        txtDni.setBounds(50,95,250,20);
         txtDni.addKeyListener(new validarCampos());
         txtDni.setFont(fuenteCampos);
+        txtDni.setBorder(null);
+        
+        h1=new JSeparator();
+        h1.setBounds(50,115,250,20);
+        h1.setOpaque(false);
+        h1.setBackground(Color.gray);
         
         mensaje=new JLabel();
-        mensaje.setBounds(20,75,120,20);
-        mensaje.setForeground(Color.RED);
+        mensaje.setBounds(190,70,120,20);
+        mensaje.setForeground(ColorFuente);
         mensaje.setFont(fuenteMensaje);
         
-        nom=new JLabel("Nombre:");
-        nom.setBounds(20,100,80,20);
-        nom.setFont(fuenteCampos);
+        nom=new JLabel("Nombre");
+        nom.setBounds(50,130,150,20);
+        nom.setFont(fuenteCamposLabel);
+        nom.setForeground(ColorFuente);
         
         txtNom=new JTextField();
-        txtNom.setBounds(135,100,120,20);
+        txtNom.setBounds(50,155,250,20);
         txtNom.addKeyListener(new validarCampos());
         txtNom.setFont(fuenteCampos);
+        txtNom.setBorder(null);
         
-        apepa=new JLabel("Apellido Paterno:");
-        apepa.setBounds(20,140,110,20);
-        apepa.setFont(fuenteCampos);
+        h2=new JSeparator();
+        h2.setBounds(50,175,250,20);
+        h2.setOpaque(false);
+        h2.setBackground(Color.gray);
+        
+        apepa=new JLabel("Apellido Paterno");
+        apepa.setBounds(50,190,150,20);
+        apepa.setFont(fuenteCamposLabel);
+        apepa.setForeground(ColorFuente);
         
         txtApepa=new JTextField();
-        txtApepa.setBounds(135,140,120,20);
+        txtApepa.setBounds(50,215,250,20);
         txtApepa.addKeyListener(new validarCampos());
         txtApepa.setFont(fuenteCampos);
+        txtApepa.setBorder(null);
+        
+        h3=new JSeparator();
+        h3.setBounds(50,235,250,20);
+        h3.setOpaque(false);
+        h3.setBackground(Color.gray);
 
-        apema=new JLabel("Apellido Materno:");
-        apema.setBounds(20,180,110,20);
-        apema.setFont(fuenteCampos);
+        apema=new JLabel("Apellido Materno");
+        apema.setBounds(50,250,150,20);
+        apema.setFont(fuenteCamposLabel);
+        apema.setForeground(ColorFuente);
         
         txtApema=new JTextField();
-        txtApema.setBounds(135,180,120,20);
+        txtApema.setBounds(50,275,250,20);
         txtApema.addKeyListener(new validarCampos());
         txtApema.setFont(fuenteCampos);
+        txtApema.setBorder(null);
         
-        dis=new JLabel("Distrito:");
-        dis.setBounds(20,220,110,20);
-        dis.setFont(fuenteCampos);
+        h4=new JSeparator();
+        h4.setBounds(50,295,250,20);
+        h4.setOpaque(false);
+        h4.setBackground(Color.gray);
+        
+        dis=new JLabel("Distrito");
+        dis.setBounds(50,310,180,20);
+        dis.setFont(fuenteCamposLabel);
+        dis.setForeground(ColorFuente);
         
         cbdis=new JComboBox();
-        cbdis.addItem("-Seleccionar-");
+        cbdis.addItem("-Seleccionar Distrito-");
         agregarItems();
-        cbdis.setBounds(135,220,120,20);
+        cbdis.setBounds(50,335,250,20);
         cbdis.setFont(fuenteCampos);
         
-        dir=new JLabel("Dirección:");
-        dir.setBounds(20,260,110,20);
-        dir.setFont(fuenteCampos);
+        h5=new JSeparator();
+        h5.setBounds(50,355,250,20);
+        h5.setOpaque(false);
+        h5.setBackground(Color.gray);
+        
+        dir=new JLabel("Dirección");
+        dir.setBounds(50,370,180,20);
+        dir.setFont(fuenteCamposLabel);
+        dir.setForeground(ColorFuente);
         
         txtDir=new JTextField();
-        txtDir.setBounds(135,260,120,20);
+        txtDir.setBounds(50,395,250,20);
         txtDir.setFont(fuenteCampos);
+        txtDir.setBorder(null);
         
-        tele=new JLabel("Teléfono:");
-        tele.setBounds(20,300,110,20);
-        tele.setFont(fuenteCampos);
+        h6=new JSeparator();
+        h6.setBounds(50,415,250,20);
+        h6.setOpaque(false);
+        h6.setBackground(Color.gray);
+        
+        tele=new JLabel("Teléfono");
+        tele.setBounds(50,430,180,20);
+        tele.setFont(fuenteCamposLabel);
+        tele.setForeground(ColorFuente);
         
         txtTele=new JTextField();
-        txtTele.setBounds(135,300,120,20);
+        txtTele.setBounds(50,455,250,20);
         txtTele.addKeyListener(new validarCampos());
         txtTele.setFont(fuenteCampos);
+        txtTele.setBorder(null);
         
-        cor=new JLabel("Correo Electrónico:");
-        cor.setBounds(20,340,110,20);
-        cor.setFont(fuenteCampos);
+        h7=new JSeparator();
+        h7.setBounds(50,475,250,20);
+        h7.setOpaque(false);
+        h7.setBackground(Color.gray);
+        
+        cor=new JLabel("Correo Electrónico");
+        cor.setBounds(50,490,180,20);
+        cor.setFont(fuenteCamposLabel);
+        cor.setForeground(ColorFuente);
         
         txtCor=new JTextField();
-        txtCor.setBounds(135,340,120,20);
+        txtCor.setBounds(50,515,250,20);
         txtCor.setFont(fuenteCampos);
+        txtCor.setBorder(null);
         
-        edad=new JLabel("Edad:");
-        edad.setBounds(20,380,110,20);
-        edad.setFont(fuenteCampos);
+        h8=new JSeparator();
+        h8.setBounds(50,535,250,20);
+        h8.setOpaque(false);
+        h8.setBackground(Color.gray);
+        
+        edad=new JLabel("Edad");
+        edad.setBounds(50,550,180,20);
+        edad.setFont(fuenteCamposLabel);
+        edad.setForeground(ColorFuente);
         
         txtEdad=new JTextField();
-        txtEdad.setBounds(135,380,120,20);
+        txtEdad.setBounds(50,575,250,20);
         txtEdad.addKeyListener(new validarCampos());
         txtEdad.setFont(fuenteCampos);
+        txtEdad.setBorder(null);
+        
+        h9=new JSeparator();
+        h9.setBounds(50,595,250,20);
+        h9.setOpaque(false);
+        h9.setBackground(Color.gray);
         
         btnGuardar=new JButton("Guardar");
-        btnGuardar.setBounds(60,435,80,20);
-        btnGuardar.setFont(fuenteCampos);
+        btnGuardar.setBounds(50,620,110,30);
+        btnGuardar.setFont(fuenteCamposLabel);
+        btnGuardar.setBackground(null);
+        btnGuardar.setForeground(ColorFuente);
+        btnGuardar.addMouseListener(new ColorBotones(ColorFuente,Color.WHITE,btnGuardar));
         
         
         btnCancelar=new JButton("Cancelar");
-        btnCancelar.setBounds(150,435,85,20);
-        btnCancelar.setFont(fuenteCampos);
+        btnCancelar.setBounds(175,620,120,30);
+        btnCancelar.setFont(fuenteCamposLabel);
+        btnCancelar.setBackground(null);
+        btnCancelar.setForeground(ColorFuente);
+        btnCancelar.addMouseListener(new ColorBotones(ColorFuente,Color.WHITE,btnCancelar));
 
-        btnAtras=new JButton("<<Atrás");
-        btnAtras.setBounds(10,475,80,20);
-        btnAtras.setFont(fuenteCampos);
-        
         add(titulo);
         add(dni);
         add(nom);
@@ -148,9 +215,17 @@ public class PanelVentanaRegistrarContactoUsuario extends JPanel
         add(txtDir);
         add(txtApema);
         add(btnGuardar);
-        add(btnAtras);
         add(btnCancelar);
         add(mensaje);
+        add(h1);
+        add(h2);
+        add(h3);
+        add(h4);
+        add(h5);
+        add(h6);
+        add(h7);
+        add(h8);
+        add(h9);
     }
 
     public JTextField getTxtNom() {
@@ -176,9 +251,7 @@ public class PanelVentanaRegistrarContactoUsuario extends JPanel
     public JLabel getMensaje() {
         return mensaje;
     }
-    
-    
-    
+
     public JTextField getTxtEdad() {
         return txtEdad;
     }
@@ -201,10 +274,6 @@ public class PanelVentanaRegistrarContactoUsuario extends JPanel
 
     public JButton getBtnCancelar() {
         return btnCancelar;
-    }
-
-    public JButton getBtnAtras() {
-        return btnAtras;
     }
     
     public void limpiarCampos()
@@ -239,6 +308,7 @@ public class PanelVentanaRegistrarContactoUsuario extends JPanel
             }
         }
     }
+    
     private void agregarItems()
     {
         cbdis.addItem("Ancón");
@@ -286,5 +356,33 @@ public class PanelVentanaRegistrarContactoUsuario extends JPanel
         cbdis.addItem("Surquillo");
         cbdis.addItem("Villa El Salvador");
         cbdis.addItem("Villa María del Triunfo");
+    }
+    
+    private class ColorBotones extends MouseAdapter
+    {
+        private Color colorFondo,colorLetra;
+        private JButton boton;
+        
+        public ColorBotones(Color colorFondo,Color colorLetra,JButton boton)
+        {
+            this.colorFondo=colorFondo;
+            this.colorLetra=colorLetra;
+            this.boton=boton;
+        }
+        
+        @Override
+        public void mouseEntered(MouseEvent e)
+        {
+            this.boton.setBackground(colorFondo);
+            this.boton.setForeground(colorLetra);
+        }
+        
+        @Override
+        public void mouseExited(MouseEvent e)
+        {
+            this.boton.setBackground(null);
+            this.boton.setForeground(colorFondo);
+            
+        }
     }
 }

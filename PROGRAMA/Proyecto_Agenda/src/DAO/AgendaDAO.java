@@ -15,8 +15,9 @@ public class AgendaDAO
     private String sql="";
     private ArrayList <AgendaBEAN> lista=null;
     
-    public void registraAgenda(AgendaBEAN agenda)
+    public int registraAgenda(AgendaBEAN agenda)
     {
+        int i=0;
         try 
         {
             conexion=new ConexionBD();
@@ -24,7 +25,7 @@ public class AgendaDAO
             instruccion=conexion.getConexionBD().prepareStatement(sql);
             instruccion.setString(1, agenda.getCodigoUsuario());
             instruccion.setString(2, agenda.getCodigoContacto());
-            instruccion.executeUpdate();
+            i=instruccion.executeUpdate();
             JOptionPane.showMessageDialog(null, "Usted ha registrado el nuevo contacto exitosamente");        
 
         } 
@@ -32,5 +33,7 @@ public class AgendaDAO
         {
             JOptionPane.showMessageDialog(null, "Error!!..Verifique los datos ingresados");
         }
+        
+        return i;
     }
 }
