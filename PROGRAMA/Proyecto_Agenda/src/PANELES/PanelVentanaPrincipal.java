@@ -35,20 +35,20 @@ public class PanelVentanaPrincipal extends JPanel
         mensaje.setForeground(Color.RED);
         
         usu=new JLabel("Usuario: ");
-        usu.setBounds(50,80,80,20);
+        usu.setBounds(50,90,80,20);
         usu.setFont(fuenteCampos);
         
         txtusu=new JTextField();
-        txtusu.setBounds(150,80,150,20);
+        txtusu.setBounds(150,90,150,20);
         txtusu.setFont(fuenteCampos);
         txtusu.addKeyListener(new cambioCampo());
         
         cla=new JLabel("Contraseña: ");
-        cla.setBounds(50,130,80,20);
+        cla.setBounds(50,140,80,20);
         cla.setFont(fuenteCampos);
         
         txtcla=new JPasswordField();
-        txtcla.setBounds(150,130,150,20);
+        txtcla.setBounds(150,140,150,20);
         txtcla.setFont(fuenteCampos);
         txtcla.addKeyListener(new cambioCampo());
         

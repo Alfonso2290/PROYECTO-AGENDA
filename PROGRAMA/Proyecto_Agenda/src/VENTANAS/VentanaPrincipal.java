@@ -7,6 +7,7 @@ import PANELES.PanelVentanaPrincipal;
 import java.awt.event.*;
 import javax.swing.*;
 import VENTANAS.Administrador.VentanaPrincipalAdministrador;
+import VENTANAS.Usuario.VentanaPrincipalUsuario;
 import java.awt.*;
 
 public class VentanaPrincipal extends JFrame implements ActionListener
@@ -77,10 +78,20 @@ public class VentanaPrincipal extends JFrame implements ActionListener
                     int verificar=usuarioDAO.verificarCuentaDeUsuario(usuario);
                     if(verificar==1)
                     {
+                        String tipo=usuarioDAO.getTipoUsuario(usuario);
                         setVisible(false);
-                        VentanaPrincipalAdministrador miVentana=new VentanaPrincipalAdministrador(miPanel.getTxtusu().getText());
-                        miVentana.setVisible(true);
-                        miVentana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
+                        if(tipo.equals("Administrador"))
+                        {
+                            VentanaPrincipalAdministrador miVentana=new VentanaPrincipalAdministrador(miPanel.getTxtusu().getText());
+                            miVentana.setVisible(true);
+                            miVentana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
+                        }
+                        else
+                        {
+                            VentanaPrincipalUsuario miVentana2=new VentanaPrincipalUsuario(miPanel.getTxtusu().getText());
+                            miVentana2.setVisible(true);
+                            miVentana2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
+                        }
                     }
                     else if(contador==3)
                     {

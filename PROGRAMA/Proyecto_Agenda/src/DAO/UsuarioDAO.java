@@ -330,4 +330,26 @@ public class UsuarioDAO
         
         return lista;
     }
+    
+    public String getTipoUsuario(UsuarioBEAN usuario)
+    {
+        String tipo="";
+        try 
+        {
+            conexion=new ConexionBD();
+            sql="SELECT TIPO FROM USUARIO ";
+            sql+="WHERE NOMBRE_USUARIO=?";
+            instruccion=conexion.getConexionBD().prepareStatement(sql);
+            instruccion.setString(1, usuario.getNombreUsuario());
+            tabla=instruccion.executeQuery();
+            
+            if(tabla.next())
+                tipo=tabla.getString(1);
+            
+        } 
+        catch (Exception e) {
+        }
+        
+        return tipo;
+    }
 }

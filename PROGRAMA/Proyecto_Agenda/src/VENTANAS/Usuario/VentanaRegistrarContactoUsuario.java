@@ -3,8 +3,7 @@
     VALIDAR CORREO
     PONER * EN CAMPOS OBLIGATORIOS
 */
-package VENTANAS.Administrador;
-
+package VENTANAS.Usuario;
 
 import BEAN.AgendaBEAN;
 import BEAN.ContactoBEAN;
@@ -12,18 +11,17 @@ import BEAN.UsuarioBEAN;
 import DAO.AgendaDAO;
 import DAO.ContactoDAO;
 import DAO.UsuarioDAO;
-import PANELES.Administrador.PanelVentanaRegistrarContacto;
+import PANELES.Usuario.PanelVentanaRegistrarContactoUsuario;
 import java.awt.Color;
 import java.awt.event.*;
 import javax.swing.*;
 
-
-public class VentanaRegistrarContacto extends JFrame implements ActionListener,FocusListener
+public class VentanaRegistrarContactoUsuario extends JFrame implements ActionListener,FocusListener
 {
-    private PanelVentanaRegistrarContacto miPanel;
+    private PanelVentanaRegistrarContactoUsuario miPanel;
     private String nombreUsuario;
     
-    public VentanaRegistrarContacto(String nombreUsuario)
+    public VentanaRegistrarContactoUsuario(String nombreUsuario)
     {
         this.nombreUsuario=nombreUsuario;
         setTitle("Registrar Contacto");
@@ -35,7 +33,7 @@ public class VentanaRegistrarContacto extends JFrame implements ActionListener,F
     
     private void Inicio()
     {
-        miPanel=new PanelVentanaRegistrarContacto();
+        miPanel=new PanelVentanaRegistrarContactoUsuario();
         miPanel.setBackground(Color.LIGHT_GRAY.brighter());
         
         miPanel.getBtnGuardar().addActionListener(this);
@@ -199,6 +197,4 @@ public class VentanaRegistrarContacto extends JFrame implements ActionListener,F
             }
         }
     }
-    
 }
-

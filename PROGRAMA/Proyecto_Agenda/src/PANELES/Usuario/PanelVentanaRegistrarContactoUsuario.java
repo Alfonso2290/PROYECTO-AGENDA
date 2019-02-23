@@ -1,5 +1,5 @@
 
-package PANELES.Administrador;
+package PANELES.Usuario;
 
 import BEAN.ContactoBEAN;
 import java.awt.Color;
@@ -7,14 +7,14 @@ import java.awt.Font;
 import javax.swing.*;
 import java.awt.event.*;
 
-public class PanelVentanaRegistrarContacto extends JPanel  
+public class PanelVentanaRegistrarContactoUsuario extends JPanel  
 {
     private JLabel mensaje,titulo,nom,dni,apepa,apema,tele,edad,dis,dir,cor;
     private JTextField txtNom,txtDni,txtApepa,txtApema,txtTele,txtEdad,txtDir,txtCor;
     private JComboBox cbdis;
     private JButton btnGuardar,btnCancelar,btnAtras;
     
-    public PanelVentanaRegistrarContacto()
+    public PanelVentanaRegistrarContactoUsuario()
     {
         Inicio();
     }
@@ -176,7 +176,9 @@ public class PanelVentanaRegistrarContacto extends JPanel
     public JLabel getMensaje() {
         return mensaje;
     }
-
+    
+    
+    
     public JTextField getTxtEdad() {
         return txtEdad;
     }
@@ -237,7 +239,6 @@ public class PanelVentanaRegistrarContacto extends JPanel
             }
         }
     }
-    
     private void agregarItems()
     {
         cbdis.addItem("Ancón");
