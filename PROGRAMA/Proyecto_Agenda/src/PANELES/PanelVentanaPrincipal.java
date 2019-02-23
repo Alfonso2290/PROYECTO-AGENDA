@@ -4,6 +4,7 @@ package PANELES;
 import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
+import java.net.URL;
 
 public class PanelVentanaPrincipal extends JPanel 
 {
@@ -11,6 +12,8 @@ public class PanelVentanaPrincipal extends JPanel
     private JTextField txtusu;
     private JPasswordField txtcla;
     private JButton btnSalir,btnIngresar;
+    private JSeparator h1,h2;
+    private JLabel cerrar,icono1,icono2;
     
     public PanelVentanaPrincipal()
     {
@@ -21,58 +24,96 @@ public class PanelVentanaPrincipal extends JPanel
     {
         setLayout(null);
         
-        Font fuenteTitulo=new Font("Arial", Font.BOLD, 16);
-        Font fuenteCampos=new Font("Arial", Font.BOLD, 13);
-        Font fuenteMensaje=new Font("Arial",Font.ITALIC,10);
+        Color ColorFuente=new Color(232,44,12);
+        Font fuenteTitulo=new Font("Decker", Font.BOLD, 20);
+        Font fuenteCampos=new Font("Decker", Font.PLAIN, 14);
+        Font fuenteCamposLabel=new Font("Decker", Font.BOLD, 16);
+        Font fuenteMensaje=new Font("Decker",Font.ITALIC,12);
         
         titulo=new JLabel("INICIO DE SESIÓN");
-        titulo.setBounds(105,10,150,30);
+        titulo.setBounds(90,10,200,30);
         titulo.setFont(fuenteTitulo);
+        titulo.setForeground(ColorFuente);
         
         mensaje=new JLabel("Usted tiene 3 intentos para acceder al Sistema");
-        mensaje.setBounds(60,45,220,20);
+        mensaje.setBounds(40,55,270,20);
         mensaje.setFont(fuenteMensaje);
-        mensaje.setForeground(Color.RED);
+        mensaje.setForeground(ColorFuente);
         
-        usu=new JLabel("Usuario: ");
-        usu.setBounds(50,90,80,20);
-        usu.setFont(fuenteCampos);
+        cerrar=new JLabel(insertarIcono("/imagenes/close.png"));
+        cerrar.setBounds(290,60,40,12);
+        cerrar.addMouseListener(new AccionMouse());
+        
+        icono1=new JLabel(insertarIcono("/imagenes/user.png"));
+        icono1.setBounds(10,100,40,30);
+        
+        usu=new JLabel("Usuario ");
+        usu.setBounds(50,100,80,20);
+        usu.setFont(fuenteCamposLabel);
+        usu.setForeground(ColorFuente);
         
         txtusu=new JTextField();
-        txtusu.setBounds(150,90,150,20);
+        txtusu.setBounds(50,125,250,20);
         txtusu.setFont(fuenteCampos);
-        txtusu.addKeyListener(new cambioCampo());
+        txtusu.setBorder(null);
         
-        cla=new JLabel("Contraseña: ");
-        cla.setBounds(50,140,80,20);
-        cla.setFont(fuenteCampos);
+        h1=new JSeparator();
+        h1.setBounds(50,145,250,20);
+        h1.setOpaque(false);
+        h1.setBackground(Color.gray);
+        
+        icono2=new JLabel(insertarIcono("/imagenes/llave.png"));
+        icono2.setBounds(10,180,40,30);
+        
+        cla=new JLabel("Contraseña ");
+        cla.setBounds(50,180,120,20);
+        cla.setFont(fuenteCamposLabel);
+        cla.setForeground(ColorFuente);
         
         txtcla=new JPasswordField();
-        txtcla.setBounds(150,140,150,20);
+        txtcla.setBounds(50,205,250,20);
         txtcla.setFont(fuenteCampos);
-        txtcla.addKeyListener(new cambioCampo());
+        txtcla.setBorder(null);
+        
+        h2=new JSeparator();
+        h2.setBounds(50,225,250,20);
+        h2.setOpaque(false);
+        h2.setBackground(Color.gray);
         
         btnIngresar=new JButton("Ingresar");
-        btnIngresar.setBounds(80,200,90,30);
-        btnIngresar.addMouseListener(new ColorBotones(Color.LIGHT_GRAY.darker(),Color.WHITE,btnIngresar));
-        btnIngresar.setFont(fuenteCampos);
-        btnIngresar.addKeyListener(new cambioCampo());
+        btnIngresar.setBounds(80,270,100,30);
+        btnIngresar.addMouseListener(new ColorBotones(ColorFuente,Color.WHITE,btnIngresar));
+        btnIngresar.setFont(fuenteCamposLabel);
+        btnIngresar.setBackground(null);
+        btnIngresar.setForeground(ColorFuente);
         
         btnSalir=new JButton("Salir");
-        btnSalir.setBounds(190,200,85,30);
-        btnSalir.addMouseListener(new ColorBotones(Color.LIGHT_GRAY.darker(),Color.WHITE,btnSalir));
-        btnSalir.setFont(fuenteCampos);
+        btnSalir.setBounds(190,270,85,30);
+        btnSalir.addMouseListener(new ColorBotones(ColorFuente,Color.WHITE,btnSalir));
+        btnSalir.setFont(fuenteCamposLabel);
+        btnSalir.setBackground(null);
+        btnSalir.setForeground(ColorFuente);
         
         add(txtusu);
         add(txtcla);
         add(titulo);
         add(usu);
         add(cla);
+        add(cerrar);
         add(btnSalir);
         add(btnIngresar);
         add(mensaje);
+        add(h1);
+        add(h2);
+        add(icono1);
+        add(icono2);
+
     }
 
+    public JLabel getCerrar() {
+        return cerrar;
+    }
+    
     public JTextField getTxtusu() 
     {
         return txtusu;
@@ -101,6 +142,14 @@ public class PanelVentanaPrincipal extends JPanel
         txtusu.setText("");
     }
     
+    private Icon insertarIcono(String ruta)
+    {
+        URL url=this.getClass().getResource(ruta);
+        ImageIcon icono=new ImageIcon(url);
+        
+        return icono;
+    }
+    
     private class ColorBotones extends MouseAdapter
     {
         private Color colorFondo,colorLetra;
@@ -123,38 +172,28 @@ public class PanelVentanaPrincipal extends JPanel
         @Override
         public void mouseExited(MouseEvent e)
         {
-            this.boton.setBackground(getBackground());
-            this.boton.setForeground(null);
+            this.boton.setBackground(null);
+            this.boton.setForeground(colorFondo);
             
         }
     }
     
-    private class cambioCampo extends KeyAdapter
+    private class AccionMouse extends MouseAdapter
     {
-        @Override
-        public void keyPressed(KeyEvent e)
+        public void mouseClicked(MouseEvent e)
         {
-            if(e.getSource()==txtusu)
-            {
-                if(e.VK_ENTER==e.getKeyCode())
-                    txtusu.nextFocus();
-            }
-            
-            if(e.getSource()==txtcla)
-            {
-                if(e.VK_ENTER==e.getKeyCode())
-                    txtcla.nextFocus();
-                
-            }
-            
-            if(e.getSource()==btnIngresar)
-            {
-                if(e.VK_ENTER==e.getKeyCode())
-                    btnIngresar.nextFocus(); //CAMBIAR INSTRUCCION QUE DE CLICK
-            }
-                
+            cerrar.setVisible(false);
+            mensaje.setVisible(false);
+            icono1.setBounds(10,70,40,30);
+            usu.setBounds(50,70,80,20);
+            txtusu.setBounds(50,95,250,20);
+            h1.setBounds(50,115,250,20);
+            icono2.setBounds(10,150,40,30);
+            cla.setBounds(50,150,120,20);
+            txtcla.setBounds(50,175,250,20);
+            h2.setBounds(50,195,250,20);
+            btnIngresar.setBounds(80,240,100,30);
+            btnSalir.setBounds(190,240,85,30);
         }
     }
-    
-    
 }
