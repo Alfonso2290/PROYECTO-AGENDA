@@ -37,8 +37,9 @@ public class UsuarioDAO
         return i;
     }
     
-    public void registraUsuario(UsuarioBEAN usuario)
+    public int registraUsuario(UsuarioBEAN usuario)
     {
+        int i=0;
         try 
         {
             conexion=new ConexionBD();
@@ -53,13 +54,15 @@ public class UsuarioDAO
             instruccion.setString(7, usuario.getApellidoMat());
             instruccion.setString(8, usuario.getTelefono());
             instruccion.setString(9, usuario.getCorreo());
-            instruccion.executeUpdate();
+            i=instruccion.executeUpdate();
             JOptionPane.showMessageDialog(null, "Usted ha registrado el nuevo usuario exitosamente");        
         } 
         catch (Exception e) 
         {
-            JOptionPane.showMessageDialog(null, "Error!!..Verifique los datos ingresados");
+            
         }
+        
+        return i;
     }
     
     public String generarCodigo()
@@ -86,12 +89,11 @@ public class UsuarioDAO
                     codigo="U" + temp2 + ""; 
             }
             
-            tabla.close();
-            conexion.cerrarConexion();
-            instruccion.close();
         } 
         catch (Exception e) 
-        {}
+        {
+            
+        }
         
         return codigo;
     }

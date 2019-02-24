@@ -102,7 +102,7 @@ public class VentanaRegistrarPersona extends JFrame implements ActionListener
         }
         else if(cor.equals(""))
         {
-            JOptionPane.showMessageDialog(null, "Ustede debe llenar el campo Correo Electrónico");
+            JOptionPane.showMessageDialog(null, "Usted debe llenar el campo Correo Electrónico");
             miPanel.getTxtCor().requestFocus();
         }
         else
@@ -120,11 +120,19 @@ public class VentanaRegistrarPersona extends JFrame implements ActionListener
             usuario.setCorreo(cor);
             usuario.setNombre(nom);
             usuario.setTelefono(tele);
-
-            usuarioDAO.registraUsuario(usuario);
-
-            setVisible(false);
-
+            
+            UsuarioDAO usuarioD=new UsuarioDAO();
+            int i=usuarioD.registraUsuario(usuario);
+            
+            if(i==1)
+            {
+                setVisible(false);
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(null, "Error!!..Verifique los datos ingresados");
+                miPanel.getTxtNom().requestFocus();
+            }
         }
     }
 
