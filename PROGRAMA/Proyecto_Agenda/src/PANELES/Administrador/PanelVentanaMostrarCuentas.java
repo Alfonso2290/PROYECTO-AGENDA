@@ -15,7 +15,8 @@ public class PanelVentanaMostrarCuentas extends JPanel
     private DefaultTableModel modelo;
     private JTable tabla;
     private JScrollPane scroll;
-    private JButton btnBuscar,btnRetornar;
+    private JButton btnBuscar;
+    private JLabel retornar;
     private JComboBox cbTipo,cbNombre;
     private ArrayList<UsuarioBEAN> lista,listaNombres,listaTipos;
     private JLabel mensaje;
@@ -29,6 +30,9 @@ public class PanelVentanaMostrarCuentas extends JPanel
     {
         setLayout(null);
         
+        Color ColorFuente=new Color(232,44,12);
+        Font fuenteCamposLabel=new Font("Decker", Font.BOLD, 16);
+        Font fuenteCampos=new Font("Decker", Font.PLAIN, 14);
         capturarListas();
         
         cbNombre=new JComboBox();
@@ -37,7 +41,8 @@ public class PanelVentanaMostrarCuentas extends JPanel
         {
             cbNombre.addItem(obj.getNombreUsuario());
         }
-        cbNombre.setBounds(185, 30, 150, 30);
+        cbNombre.setBounds(105, 30, 200, 30);
+        cbNombre.setFont(fuenteCampos);
         
         cbTipo=new JComboBox();
         cbTipo.addItem("-Seleccionar Tipo-");
@@ -45,19 +50,23 @@ public class PanelVentanaMostrarCuentas extends JPanel
         {
             cbTipo.addItem(obj.getTipo());
         }
-        cbTipo.setBounds(360, 30, 150, 30);
+        cbTipo.setBounds(315, 30, 200, 30);
+        cbTipo.setFont(fuenteCampos);
         
         btnBuscar=new JButton("Buscar");
-        btnBuscar.setBounds(535, 30, 80, 30);
+        btnBuscar.setBounds(525, 30, 100, 30);
         btnBuscar.addActionListener(new filtrar());
+        btnBuscar.addMouseListener(new ColorBotones(ColorFuente,Color.WHITE,btnBuscar));
+        btnBuscar.setFont(fuenteCamposLabel);
+        btnBuscar.setForeground(ColorFuente);
+        btnBuscar.setBackground(null);
         
-        String ruta="/imagenes/return.png";
+        String ruta="/imagenes/retornar.png";
         URL url=this.getClass().getResource(ruta);
         ImageIcon icono=new ImageIcon(url);
-        btnRetornar=new JButton(icono);
-        btnRetornar.setBounds(635, 30, 25, 30);
-        btnRetornar.setBorderPainted(false);
-        btnRetornar.addActionListener(new filtrar());
+        retornar=new JLabel(icono);
+        retornar.setBounds(635, 30, 30, 30);
+        retornar.addMouseListener(new AccionMouse());
         
         modelo=new DefaultTableModel();
         tabla=new JTable();
@@ -79,8 +88,8 @@ public class PanelVentanaMostrarCuentas extends JPanel
         capturarListaTabla();
         
         mensaje=new JLabel();
-        mensaje.setBounds(120,150,350,50);
-        mensaje.setFont(new Font("Arial",Font.BOLD,18));
+        mensaje.setBounds(95,150,400,50);
+        mensaje.setFont(new Font("Decker",Font.BOLD,18));
         mensaje.setForeground(Color.RED);
         
         if(lista.size()!=0)
@@ -99,7 +108,7 @@ public class PanelVentanaMostrarCuentas extends JPanel
             add(cbTipo);
             add(cbNombre);
             add(btnBuscar);
-            add(btnRetornar);
+            add(retornar);
             add(scroll);
         }
         else
@@ -181,36 +190,42 @@ public class PanelVentanaMostrarCuentas extends JPanel
                     //JOptionPane.showMessageDialog(null, "Para realizar un filtro Usted debe seleccionar un Nombre y/o Distrito");
                 }
             }
-            
-            if(e.getSource()==btnRetornar)
+        }
+    }
+    
+    private void llenarTabla(String msj)
+    {
+        if(lista.size()!=0)
+        {
+            scroll.setVisible(true);
+            limpiarTabla();
+            for(UsuarioBEAN obj:lista)
             {
-                lista=usuarioD.listarUsuarios();
+                modelo.addRow(new Object[]{obj.getCodigo(),obj.getNombreUsuario(),
+                obj.getClave(),obj.getTipo(),obj.getNombre() + " " +
+                obj.getApellidoPat() + " " + obj.getApellidoMat()});
+            }
+            mensaje.setBounds(95,150,400,50);
+            mensaje.setText("");
+        }
+        else
+        {
+            scroll.setVisible(false);
+            mensaje.setBounds(100,150,500,50);
+            mensaje.setText(msj);
+        }
+    }
+    
+    private class AccionMouse extends MouseAdapter
+    {
+        public void mouseClicked(MouseEvent e)
+        {
+            if(e.getSource()==retornar)
+            {
+                capturarListaTabla();
                 llenarTabla("");
                 cbTipo.setSelectedIndex(0);
                 cbNombre.setSelectedIndex(0);
-            }
-        }
-        
-        private void llenarTabla(String msj)
-        {
-            if(lista.size()!=0)
-            {
-                scroll.setVisible(true);
-                limpiarTabla();
-                for(UsuarioBEAN obj:lista)
-                {
-                    modelo.addRow(new Object[]{obj.getCodigo(),obj.getNombreUsuario(),
-                    obj.getClave(),obj.getTipo(),obj.getNombre() + " " +
-                    obj.getApellidoPat() + " " + obj.getApellidoMat()});
-                }
-                mensaje.setBounds(120,150,350,50);
-                mensaje.setText("");
-            }
-            else
-            {
-                scroll.setVisible(false);
-                mensaje.setBounds(120,150,470,50);
-                mensaje.setText(msj);
             }
         }
     }
@@ -221,6 +236,34 @@ public class PanelVentanaMostrarCuentas extends JPanel
         {
             modelo.removeRow(i);
             i--;
+        }
+    }
+    
+    private class ColorBotones extends MouseAdapter
+    {
+        private Color colorFondo,colorLetra;
+        private JButton boton;
+        
+        public ColorBotones(Color colorFondo,Color colorLetra,JButton boton)
+        {
+            this.colorFondo=colorFondo;
+            this.colorLetra=colorLetra;
+            this.boton=boton;
+        }
+        
+        @Override
+        public void mouseEntered(MouseEvent e)
+        {
+            this.boton.setBackground(colorFondo);
+            this.boton.setForeground(colorLetra);
+        }
+        
+        @Override
+        public void mouseExited(MouseEvent e)
+        {
+            this.boton.setBackground(null);
+            this.boton.setForeground(colorFondo);
+            
         }
     }
 }

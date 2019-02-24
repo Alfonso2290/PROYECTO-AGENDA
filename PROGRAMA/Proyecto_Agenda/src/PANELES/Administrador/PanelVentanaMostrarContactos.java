@@ -17,7 +17,8 @@ public class PanelVentanaMostrarContactos extends JPanel
     private DefaultTableModel modelo;
     private JTable tabla;
     private JScrollPane scroll;
-    private JButton btnBuscar,btnRetornar;
+    private JButton btnBuscar;
+    private JLabel retornar;
     private JComboBox cbDistrito,cbNombre;
     private ArrayList<ContactoBEAN> lista,listaNombres,listaDistritos;
     private String nombreUsuario;
@@ -33,6 +34,9 @@ public class PanelVentanaMostrarContactos extends JPanel
     {
         setLayout(null);
         
+        Color ColorFuente=new Color(232,44,12);
+        Font fuenteCamposLabel=new Font("Decker", Font.BOLD, 16);
+        Font fuenteCampos=new Font("Decker", Font.PLAIN, 14);
         capturarListas();
 
         cbNombre=new JComboBox();
@@ -41,7 +45,8 @@ public class PanelVentanaMostrarContactos extends JPanel
         {
             cbNombre.addItem(obj.getNombre());
         }
-        cbNombre.setBounds(330, 30, 150, 30);
+        cbNombre.setBounds(250, 30, 200, 30);
+        cbNombre.setFont(fuenteCampos);
         
         cbDistrito=new JComboBox();
         cbDistrito.addItem("-Seleccionar Distrito-");
@@ -49,19 +54,23 @@ public class PanelVentanaMostrarContactos extends JPanel
         {
             cbDistrito.addItem(obj.getDistrito());
         }
-        cbDistrito.setBounds(505, 30, 150, 30);
+        cbDistrito.setBounds(460, 30, 200, 30);
+        cbDistrito.setFont(fuenteCampos);
         
         btnBuscar=new JButton("Buscar");
-        btnBuscar.setBounds(680, 30, 80, 30);
+        btnBuscar.setBounds(670, 30, 100, 30);
         btnBuscar.addActionListener(new filtrar());
+        btnBuscar.addMouseListener(new ColorBotones(ColorFuente,Color.WHITE,btnBuscar));
+        btnBuscar.setFont(fuenteCamposLabel);
+        btnBuscar.setForeground(ColorFuente);
+        btnBuscar.setBackground(null);
         
-        String ruta="/imagenes/return.png";
+        String ruta="/imagenes/retornar.png";
         URL url=this.getClass().getResource(ruta);
         ImageIcon icono=new ImageIcon(url);
-        btnRetornar=new JButton(icono);
-        btnRetornar.setBounds(780, 30, 25, 30);
-        btnRetornar.setBorderPainted(false);
-        btnRetornar.addActionListener(new filtrar());
+        retornar=new JLabel(icono);
+        retornar.setBounds(780, 30, 30, 30);
+        retornar.addMouseListener(new AccionMouse());
         
         modelo=new DefaultTableModel();
         tabla=new JTable();
@@ -105,7 +114,7 @@ public class PanelVentanaMostrarContactos extends JPanel
             add(cbDistrito);
             add(cbNombre);
             add(btnBuscar);
-            add(btnRetornar);
+            add(retornar);
             add(scroll);
         }
         else
@@ -187,36 +196,48 @@ public class PanelVentanaMostrarContactos extends JPanel
                     //JOptionPane.showMessageDialog(null, "Para realizar un filtro Usted debe seleccionar un Nombre y/o Distrito");
                 }
             }
-            
-            if(e.getSource()==btnRetornar)
+        }
+    }
+    
+    private void llenarTabla(String msj)
+    {
+        if(lista.size()!=0)
+        {
+            scroll.setVisible(true);
+            limpiarTabla();
+            for(ContactoBEAN obj:lista)
             {
+                modelo.addRow(new Object[]{obj.getDni(),obj.getNombre(),
+                obj.getApellidoPat() + " " + obj.getApellidoMat(),obj.getTelefono(),obj.getEdad(),
+                obj.getDistrito(),obj.getDireccion(),obj.getCorreo()});
+            }
+            mensaje.setBounds(250,150,350,50);
+            mensaje.setText("");
+        }
+        else
+        {
+            scroll.setVisible(false);
+            mensaje.setBounds(180,150,470,50);
+            mensaje.setText(msj);
+        }
+    }
+    
+    private class AccionMouse extends MouseAdapter
+    {
+        public void mouseClicked(MouseEvent e)
+        {
+            if(e.getSource()==retornar)
+            {
+                UsuarioDAO usuarioD=new UsuarioDAO();
+                String codigo_usu=usuarioD.getCodigoUsuario(nombreUsuario);
+                UsuarioBEAN usu=new UsuarioBEAN();
+                usu.setCodigo(codigo_usu);
+                
+                ContactoDAO contactoD=new ContactoDAO();
                 lista=contactoD.listarContactos(usu);
                 llenarTabla("");
                 cbDistrito.setSelectedIndex(0);
                 cbNombre.setSelectedIndex(0);
-            }
-        }
-        
-        private void llenarTabla(String msj)
-        {
-            if(lista.size()!=0)
-            {
-                scroll.setVisible(true);
-                limpiarTabla();
-                for(ContactoBEAN obj:lista)
-                {
-                    modelo.addRow(new Object[]{obj.getDni(),obj.getNombre(),
-                    obj.getApellidoPat() + " " + obj.getApellidoMat(),obj.getTelefono(),obj.getEdad(),
-                    obj.getDistrito(),obj.getDireccion(),obj.getCorreo()});
-                }
-                mensaje.setBounds(250,150,350,50);
-                mensaje.setText("");
-            }
-            else
-            {
-                scroll.setVisible(false);
-                mensaje.setBounds(180,150,470,50);
-                mensaje.setText(msj);
             }
         }
     }
@@ -243,6 +264,34 @@ public class PanelVentanaMostrarContactos extends JPanel
         {
             modelo.removeRow(i);
             i--;
+        }
+    }
+    
+    private class ColorBotones extends MouseAdapter
+    {
+        private Color colorFondo,colorLetra;
+        private JButton boton;
+        
+        public ColorBotones(Color colorFondo,Color colorLetra,JButton boton)
+        {
+            this.colorFondo=colorFondo;
+            this.colorLetra=colorLetra;
+            this.boton=boton;
+        }
+        
+        @Override
+        public void mouseEntered(MouseEvent e)
+        {
+            this.boton.setBackground(colorFondo);
+            this.boton.setForeground(colorLetra);
+        }
+        
+        @Override
+        public void mouseExited(MouseEvent e)
+        {
+            this.boton.setBackground(null);
+            this.boton.setForeground(colorFondo);
+            
         }
     }
 }
